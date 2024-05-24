@@ -5,10 +5,10 @@
 
 .results {
   display: grid;
-  column-gap: 14px;
-  row-gap: 14px;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 300px));
-  margin-top:40px;
+  column-gap: 1px;
+  row-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 200px));
+  margin:40px 20px;
   justify-content: space-around;
 }
 
@@ -32,3 +32,4 @@
     grid-template-columns: 2fr;
   }
 }
+

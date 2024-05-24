@@ -1,0 +1,33 @@
+.slick-prev:before,
+.slick-next:before {
+  color: red;
+}
+
+.slick-arrow {
+  color: red;
+}
+
+.slide {
+  margin: 1px 7px;
+}
+
+.product-name {
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  margin: 0;
+}
+
+.product-info {
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin: 0;
+}
+
+a {
+  list-style: none;
+  text-decoration: none;
+}
+
+p {
+  color: rgb(34, 2, 2);
+}

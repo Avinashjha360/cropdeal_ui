@@ -1,0 +1,11 @@
+<div class="sidebar">
+    <ul>
+      <a [routerLink]="['/account']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><li>ACCOUNT MAIN</li></a>
+      <a [routerLink]="['/account/admin/orders']" routerLinkActive="active"><li>ORDER HISTORY</li></a>
+      <a [routerLink]="['/account/admin/products']" routerLinkActive="active"><li>Manage Products</li></a>
+      <a [routerLink]="['/account/admin/users']" routerLinkActive="active"><li>Manage Users</li></a>
+      <a [routerLink]="['/account/transaction']" routerLinkActive="active"><li>Orders Management</li></a>
+      <a [routerLink]="['/account/profile']" routerLinkActive="active"><li>PROFILE SETTING</li></a>
+      <a (click)="logout()" routerLinkActive="active"><li>Logout</li></a>
+    </ul>
+  </div> 

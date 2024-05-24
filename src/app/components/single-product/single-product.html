@@ -1,0 +1,12 @@
+<section class="product-listing">
+    <a [routerLink]="['/details', products.productId]" class="learn-more">
+        <mat-card class="example-card">
+            <img mat-card-image [src]="products.image" alt="Image of {{ products.name }}" class="mx-3 mt-1" height="100px">
+            <mat-card-content>
+                <h3 class="product-name" #productName>{{ products.name }}</h3>
+                <p class="product-info">Price: &#8377;{{ products.price }}</p>
+                <p class="product-info">Quantity Available: {{ products.quantity }}kg</p>
+            </mat-card-content>
+        </mat-card>
+    </a>
+</section>

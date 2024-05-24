@@ -1,0 +1,24 @@
+<div class="container">
+    <h1>User Orders</h1>
+    <div class="order-list">
+        @for (order of orderList.reverse(); track $index) {
+        <h4>{{order.date.split("T")[0]+", "+order.date.split("T")[1].split(".")[0].substring(0,5)}}</h4>
+        @for (item of order.item.products; track $index) {
+
+        <div class="order" *ngIf="item.userId === this.getUserId()">
+            <img [src]="item.image" alt="Product Image" [height]="100">
+            <div class="order-info">
+                <p><span>Order No</span> {{$index+1}}</p>
+                <p><span>Product:</span> {{item.name}}</p>
+                <p><span>Total Amount:</span> {{item.price}}</p>
+                <p><span>Quantity:</span> {{item.quantity}}</p>
+            </div>
+            <div class="order-status">
+                <p>Status: Shipped</p>
+                <button>Track Order</button>
+            </div>
+        </div>
+        }
+        }
+    </div>
+</div>

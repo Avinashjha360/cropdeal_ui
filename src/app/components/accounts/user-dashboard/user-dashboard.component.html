@@ -1,0 +1,9 @@
+<div class="sidebar">
+    <ul>
+      <a [routerLink]="['/account']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><li>ACCOUNT MAIN</li></a>
+      <a [routerLink]="['/account/dealer/orders']" routerLinkActive="active"><li>My Orders</li></a>
+      <a [routerLink]="['/account/cart']" routerLinkActive="active"><li>MY CART</li></a>
+      <a [routerLink]="['/account/profile']" routerLinkActive="active"><li>PROFILE SETTING</li></a>
+      <a (click)="logout()" routerLinkActive="active"><li>Logout</li></a>
+    </ul>
+  </div> 

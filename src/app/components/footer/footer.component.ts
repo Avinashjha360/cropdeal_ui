@@ -1,21 +1,22 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   template: `
      <footer class="footer">
   <div class="footer-content">
     <div class="farmer-section">
       <h3>For Farmers</h3>
       <p>Join our community and start selling your products to dealers.</p>
-      <a href="/farmer/signup" class="btn">Sign Up</a>
+      <a [routerLink]="['/register']" class="btn">Sign Up</a>
     </div>
     <div class="dealer-section">
       <h3>For Dealers</h3>
       <p>Explore a wide range of agricultural products from local farmers.</p>
-      <a href="/dealer/signup" class="btn">Sign Up</a>
+      <a [routerLink]="['/register']" class="btn">Sign Up</a>
     </div>
   </div>
   <div class="footer-bottom">

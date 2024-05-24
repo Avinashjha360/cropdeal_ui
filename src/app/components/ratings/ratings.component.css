@@ -252,6 +252,7 @@
     padding: 0.25rem 0.5rem;
     font-size: 0.875rem;
     border-radius: 0.2rem;
+    width: 200px;
   }
   
   .input-group-addon.form-control-lg,
@@ -351,6 +352,7 @@
     color: #fff;
     background-color: #025aa5;
     border-color: #01549b;
+    width: unset;
   }
   
   .btn-primary:focus, .btn-primary.focus {

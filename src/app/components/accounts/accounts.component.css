@@ -1,0 +1,61 @@
+.account-container {
+ display: flex;
+ justify-content: space-around;
+ padding:  2% 3%;
+ background-color: #ededed;
+}
+
+.sidebar {
+  width: 22%;
+  display: flex;
+  justify-content: right;
+  padding-top: 23px;
+}
+.sidebar ul {
+  width: 80%;
+  list-style-type: none;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+.sidebar ul li {
+  padding: 10px 20px;
+  text-align: left;
+  cursor: pointer;
+  color: rgb(58, 58, 58);
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
+.sidebar ul li:hover {
+  background-color: #f5faff;
+  color: #2874f0;
+}
+
+.sidebar ul a {
+  text-decoration: none;
+}
+.sidebar a.active li{
+  background-color: #f5faff;
+  color: #2874f0;
+}
+.sidebar ul li a:hover {
+  /* background-color: #555; */
+}
+
+.content {
+  width: 78%;
+  height: 100%;
+}
+.active {
+  background-color: #d8dfeb;
+  color: #285192; 
+}
+
+
+h3{
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
+  padding: 10px 2% 0px;
+}

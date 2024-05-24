@@ -3,18 +3,28 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
 export class SharedService {
-  message:string = "";
+  private count =0;
+  private alert ={
+      status: false,
+      message: "Invalid credentials. Please double-check your credentials and try again."
+  }
+
   constructor() { }
 
-  setMessage(data:any){
-    console.log("In-srvice: ",data);
-    
-    this.message=data;
+  setAlert(status:boolean, message:string){
+    this.alert.status = status,
+    this.alert.message = message
   }
-  getMessage(){
-    console.log("Get: ",this.message);
-    
-    return this.message;
+  getAlert(){
+    return this.alert;
+  }
+
+  getCounter(){
+    return this.count;
+  }
+  setCount(count:number){
+    this.count=count;
   }
 }

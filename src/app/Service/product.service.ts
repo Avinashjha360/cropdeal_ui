@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Products, Rating } from '../models/products';
 import { CartObject } from '../models/cart';
+import { HttpClient } from '@angular/common/http';
+import { OrderObject } from '../models/order';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  constructor() { }
-  readonly url = 'http://localhost:3000/locations';
-
+  constructor(private http:HttpClient) { }
+  readonly PATH_OF_API = "http://localhost:8087/api"
   readonly url2 = 'http://localhost:8087/api/product';
 
   readonly ratingurl = '';
@@ -29,7 +31,7 @@ export class ProductService {
   }
   async postRating(rating: string, feedback: string, productId: string, userId: string):
   Promise<Rating> {
-    const data = await fetch(`http://localhost:8087/api/ratings/addRating`,{
+    const data = await fetch(this.PATH_OF_API+`/ratings/addRating`,{
         method: 'POST',
         headers :{
           'Content-type' : 'application/json; charset=UTF-8'
@@ -44,19 +46,14 @@ export class ProductService {
     return await data.json() ?? {};
   }
 
-  async getUserCart(userId: string):
-  Promise<CartObject> {
-    const data = await fetch(`http://localhost:8087/api/cart/user/${userId}`,{
-        headers :{
-          'Content-type' : 'application/json; charset=UTF-8'
-        }
-    })
-    return await data.json() ?? {};
+
+  getUserCart(userId:String){
+    return this.http.get(this.PATH_OF_API+`/cart/user/${userId}`);
   }
 
   async addToCart(productId: string, userId: string):
   Promise<CartObject> { 
-    const data = await fetch(`http://localhost:8087/api/cart/addToCart`,{
+    const data = await fetch(this.PATH_OF_API+`/cart/addToCart`,{
         method: 'POST',
         headers :{
           'Content-type' : 'application/json; charset=UTF-8'
@@ -69,9 +66,34 @@ export class ProductService {
     return await data.json() ?? {};
   }
 
+  deleteUserCart(userId:String){
+    return this.http.delete(this.PATH_OF_API+"/cart/delete/"+userId);
+  }
+
+  placeOrder(transactionId: String, cartId: String){
+    return this.http.post(this.PATH_OF_API+"/order/createOrder", {
+      "transactionId": transactionId,
+      "cartId": cartId
+    });
+  }
+
+  getUserOrders(userId: String){
+    return this.http.get<OrderObject[]>(this.PATH_OF_API+"/order/user/"+userId);
+  }
+
+  getUserOrdersByProductUserId(userId: String){
+    return this.http.get<any[]>(this.PATH_OF_API+"/order/product/"+userId);
+  }
+
+  getProductsByUserId(userId: String){
+    return this.http.get<any[]>(this.PATH_OF_API+"/product/user/"+userId);
+  }
+
+ 
+
   async removeProductFromCart(productId: String, userId: String):
   Promise<CartObject> { 
-    const data = await fetch(`http://localhost:8087/api/cart/user/${userId}/${productId}`,{
+    const data = await fetch(this.PATH_OF_API+`/cart/user/${userId}/${productId}`,{
         method: 'DELETE',
         headers :{
           'Content-type' : 'application/json; charset=UTF-8'
@@ -80,26 +102,4 @@ export class ProductService {
     return await data.json() ?? {};
   }
 
-
-
-  submitApplication(rating: string, feedback: string, productId: string, userId: string) {
-    console.log(`Homes application received: rating: ${rating}, feedback: ${feedback}. , productId: ${productId}, userId:${userId}`);
-  }
-
-
-
-
-
-  // async getAllHousingLocations():
-  // Promise<HousingLocation[]>{
-  //   const data = await fetch(this.url);
-  //   console.log(this.getAllProducts());
-  //   return await data.json() ?? [];
-  // }
-
-  // async getHousingLocationById(id: number):
-  // Promise<HousingLocation> {
-  //   const data = await fetch(`${this.url}/${id}`);
-  //   return await data.json() ?? {};
-  // }
 }

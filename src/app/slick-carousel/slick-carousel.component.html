@@ -1,0 +1,19 @@
+<!-- You can now use your library component in app.component.html -->
+<div style="margin-left: 4%; margin-right: 4%;" class="mt-4">
+<ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+    @for (product of products; track product.productId) {
+    <div ngxSlickItem class="slide">
+        <a [routerLink]="['/details', product.productId]" class="learn-more">
+        <mat-card>
+            <img mat-card-image src="{{product.image}}" alt="Image of {{ product.name }}" class="mx-4 mt-1" height="100">
+            <mat-card-content>
+                <p class="product-name mt-1" #productName>{{product.name}}</p>
+                <p class="product-info my-0">Price: &#8377;{{product.price}}</p>
+            </mat-card-content>
+        </mat-card>
+    </a>
+    </div>
+    }
+</ngx-slick-carousel>
+
+</div>

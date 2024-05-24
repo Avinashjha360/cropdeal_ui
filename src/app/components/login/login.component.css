@@ -1,10 +1,10 @@
-.container{
+.login-container{
     display: flex;
     justify-content: center;
-    padding: 100px 80px;
+    padding: 30px 80px;
     background-color: #1abc9c;
 }
-.login-container {
+.login-box {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -13,22 +13,27 @@
     text-align: center;
 }
 
-.login-container h2 {
-    margin-bottom: 20px;
+.login-box h2 {
+    margin-bottom: 8px;
 }
-
-.login-container input {
+.login-box p{
+    margin:3px 5px;
+    color: red;
+    text-align: left;
+}
+.login-box input {
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
+    margin-top: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
-.login-container button {
+.login-box button {
     width: 100%;
     padding: 10px;
+    margin-top: 20px;
     background-color: #1abc9c;
     border: none;
     color: #fff;
@@ -37,18 +42,18 @@
     transition: background-color 0.3s;
 }
 
-.login-container button:hover {
+.login-box button:hover {
     background-color: #1a8f78;
 }
 
-.login-container h3{
+.login-box h3{
     margin-top: 10px;
     font-weight: 300;
 }
-.login-container h3 a{
+.login-box h3 a{
     text-decoration: none;
 }
-.login-container h3 span{
+.login-box h3 span{
     font-weight: 500;
     color: #1abc9c;
     cursor: pointer;
