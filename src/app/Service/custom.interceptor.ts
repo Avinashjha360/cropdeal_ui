@@ -27,8 +27,8 @@ export const CustomInterceptor: HttpInterceptorFn = (req, next) => {
   
   return next(authReq).pipe(
     tap({
-      next: () => console.log('Request sent'),
-      complete: () => console.log('Request completed'),
+      // next: () => console.log('Request sent'),
+      // complete: () => console.log('Request completed'),
       error: (err) => {        
         if(err.error)
           _snackBar.open(err.error.message, 'Close', { verticalPosition: 'top', });

@@ -1,61 +1,49 @@
-<h1 mat-dialog-title class="m-3">{{inputData.title}}</h1>
-<div mat-dialog-content>
-
-    <mat-form-field>
-        <mat-label>Input</mat-label>
-        <input matInput>
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Input</mat-label>
-        <input matInput>
-    </mat-form-field>    
-    <mat-form-field>
-        <mat-label>Input</mat-label>
-        <input matInput>
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Input</mat-label>
-        <input matInput>
-    </mat-form-field>
-
-
-
-    <!-- <form> 
-    <div class="row m-0">
-        <div class="form-group col-md-3">
-            <label for="name">Name:</label>
-            <input type="text" class="form-control" id="name" name="name" required>
+<form [formGroup]="productForm" (submit)="saveProduct()">
+    <h1 mat-dialog-title class="m-3">{{inputTitle}}</h1>
+    <div mat-dialog-content>
+        <mat-form-field>
+            <mat-label>Product Name</mat-label>
+            <input matInput formControlName="name" required>
+            <mat-error [hidden]="false">Product Name is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Select Category</mat-label>
+            <mat-select formControlName="category" required>
+                <mat-option value="Fruit">Fruit</mat-option>
+                <mat-option value="Vegetable">Vegetable</mat-option>
+            </mat-select>
+            <mat-error [hidden]="false">Product Category is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Product Price</mat-label>
+            <input matInput formControlName="price" required>
+            <mat-error [hidden]="false">Product Price is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Quantity</mat-label>
+            <input matInput formControlName="quantity" required>
+            <mat-error [hidden]="false">Product Quantity is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Image Link</mat-label>
+            <input matInput formControlName="image" >
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Location</mat-label>
+            <input matInput formControlName="location">
+        </mat-form-field>
+        <div class="text-area">
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
         </div>
-        <div class="form-group col-md-3">
-            <label for="category">Category:</label>
-            <select class="form-select" id="category" name="category" required>
-                <option value="Fruit">Fruit</option>
-                <option value="Vegetable">Vegetable</option>
-            </select>
+        <div>
+            <mat-checkbox formControlName="available">Is Active</mat-checkbox>
         </div>
-    </div>
-    <div class="row m-0">
-        <div class="form-group col-md-2">
-            <label for="price">Price:</label>
-            <input type="number" class="form-control" id="price" name="price" required>
-        </div>
-        <div class="form-group col-md-2">
-            <label for="quantity">Quantity:</label>
-            <input type="number" class="form-control" id="quantity" name="quantity" required>
-        </div>
-        <div class="form-group col-md-2">
-            <label for="image">Image URL:</label>
-            <input type="text" class="form-control" id="image" name="image" required>
+
+        <div mat-dialog-actions>
+            <button mat-raised-button color="primary">Save</button>
         </div>
     </div>
-    <div class="form-group col-md-6">
-        <label for="description">Description:</label>
-        <textarea class="form-control" id="description" name="description" required></textarea>
-    </div>
-   </form> -->
-</div>
-
-<div mat-dialog-actions>
-    <button (click)="closePopup()" mat-raised-button color="primary" class="m-1">Save</button>
-    <button mat-raised-button color="accent">Cancel</button>
-</div>
+</form>

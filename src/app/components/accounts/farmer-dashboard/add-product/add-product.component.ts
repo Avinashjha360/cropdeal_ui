@@ -30,19 +30,35 @@ interface PeriodicElement {
 
 export class AddProductComponent implements OnInit {
   ELEMENT_DATA: PeriodicElement[] = [];
-  constructor(private authService: AuthService, private productService: ProductService, private dialog:MatDialog) { }
+  displayedColumns: string[] = ['position', 'name', 'category', 'price', 'quantity', 'image'];
+  dataSource = [...this.ELEMENT_DATA];
+  @ViewChild(MatTable) table!: MatTable<PeriodicElement>;
 
-  openPopup(){
-  var _pupup =  this.dialog.open(DialogComponent,{
-      width:"70%",
-      data:{
-        title: 'Product Table'
+  constructor(private authService: AuthService, private productService: ProductService, private dialog: MatDialog) { }
+
+  saveNewData(){
+    this.openPopup("Add New Product", null);
+  }
+  editData(product:any){    
+    this.openPopup("Edit Product", product);
+  }
+  openPopup(title:string, data:any) {
+    var _pupup = this.dialog.open(DialogComponent, {
+      width: "50%",
+      height: "90%",
+      data: {
+        title: title,
+        data:data
       }
     });
 
-    _pupup.afterClosed().subscribe(item=>{
-      console.log(item);
-      
+    _pupup.afterClosed().subscribe(item => {      
+      if (item) {
+        this.ELEMENT_DATA.push(item);
+        this.dataSource.push(this.ELEMENT_DATA[this.ELEMENT_DATA.length]);
+        this.table.renderRows();
+      }
+
     })
   }
 
@@ -50,21 +66,11 @@ export class AddProductComponent implements OnInit {
     const userId = this.authService.getUserId();
     this.productService.getProductsByUserId(userId).subscribe((res: any) => {
       if (res.data) {
-        console.log(res.data);
         this.ELEMENT_DATA = res.data;
-        console.log(this.ELEMENT_DATA);
       }
 
     })
   }
-  displayedColumns: string[] = ['position', 'name', 'category', 'price', 'quantity', 'image'];
-  dataSource = [...this.ELEMENT_DATA];
 
-  @ViewChild(MatTable) table!: MatTable<PeriodicElement>;
 
-  addData() {
-    const randomElementIndex = Math.floor(Math.random() * this.ELEMENT_DATA.length);
-    this.dataSource.push(this.ELEMENT_DATA[randomElementIndex]);
-    this.table.renderRows();
-  }
 }

@@ -29,6 +29,8 @@ import { RegisterSuccessComponent } from './register-success.component';
                 <option value="FARMER">Farmer</option>
                 <option value="DEALER">Dealer</option>
             </select>
+            <p class="red-text" [hidden]="role.valid || role.untouched">Please select the role</p>
+
             <button type="submit">Register</button>
         </form>
         <h3>Already have an account?<a [routerLink]="['/login']"> <span> Login</span></a></h3> 
@@ -51,7 +53,7 @@ export class RegisterComponent {
     Validators.required,
     Validators.minLength(6)
   ]);
-  role = new FormControl('Select', [Validators.required]);
+  role = new FormControl('', [Validators.required]);
 
   registerForm = new FormGroup({
     firstName: this.firstName,

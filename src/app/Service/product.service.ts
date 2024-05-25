@@ -89,7 +89,9 @@ export class ProductService {
     return this.http.get<any[]>(this.PATH_OF_API+"/product/user/"+userId);
   }
 
- 
+  addProduct(data:any){
+    return this.http.post(this.PATH_OF_API+"/product/addProduct",data);
+  }
 
   async removeProductFromCart(productId: String, userId: String):
   Promise<CartObject> { 

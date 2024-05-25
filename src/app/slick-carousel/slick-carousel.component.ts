@@ -23,7 +23,7 @@ export class SlickCarouselComponent {
     "slidesToShow": 6, 
     "slidesToScroll": 6,
     "autoplay":true,
-    "autoplaySpeed":5000,
+    "autoplaySpeed":3000,
     "pauseOnHover":true,
     "infinite":true
   
