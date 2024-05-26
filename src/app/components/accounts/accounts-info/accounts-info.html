@@ -1,0 +1,10 @@
+<div class="container">
+    <h1>Personal Information <a>Edit</a></h1>
+    <div *ngIf="user" class="user-details">
+        <p><strong>First Name:</strong> {{ user.firstName }}</p>
+        <p><strong>Last Name:</strong> {{ user.lastName }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Phone:</strong> {{ user.phone }}</p>
+        <p><strong>Role:</strong> {{ user.role }}</p>
+    </div>
+</div>

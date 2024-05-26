@@ -1,9 +1,19 @@
 <div class="sidebar">
-    <ul>
-      <a [routerLink]="['/account']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><li>Dashboard</li></a>
-      <a [routerLink]="['/account/farmer/prdoucts']" routerLinkActive="active"><li>Manage Products</li></a>
-      <a [routerLink]="['/account/farmer/orders']" routerLinkActive="active"><li>Orders</li></a>
-      <a [routerLink]="['/account/profile']" routerLinkActive="active"><li>Profile</li></a>
-      <a (click)="logout()" routerLinkActive="active"><li>Logout</li></a>
-    </ul>
-  </div> 
+  <ul>
+    <a [routerLink]="['/account']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <li>Dashboard</li>
+    </a>
+    <a [routerLink]="['/account/farmer/prdoucts']" routerLinkActive="active">
+      <li>Manage Products</li>
+    </a>
+    <a [routerLink]="['/account/farmer/orders']" routerLinkActive="active">
+      <li>Orders</li>
+    </a>
+    <a [routerLink]="['/account/profile']" routerLinkActive="active">
+      <li>Profile</li>
+    </a>
+    <a (click)="logout()" routerLinkActive="active">
+      <li>Logout</li>
+    </a>
+  </ul>
+</div>

@@ -1,38 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../../Service/user.service';
+import { AuthService } from '../../../Service/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-accounts-info',
-  standalone: true,
-  imports: [],
-  template: `
-      <div class="container">
-        <h1>Personal Information <a>Edit</a></h1>
-        <div class="user-info">
-            <div class="user-field">
-                <span class="field-name">Name:</span>
-                <span class="field-value">Avinash Jha</span>
-            </div>
-            <div class="user-field">
-                <span class="field-name">Age:</span>
-                <span class="field-value">22</span>
-            </div>
-            <div class="user-field">
-                <span class="field-name">Email:</span>
-                <span class="field-value">avinash.jha.com</span>
-            </div>
-            <div class="user-field">
-                <span class="field-name">Mobile Number:</span>
-                <span class="field-value">8975742356</span>
-            </div>
-            <div class="user-field">
-                <span class="field-name">Location:</span>
-                <span class="field-value">MUMBAI, INDIA</span>
-            </div>
-        </div>
-    </div>
-  `,
-  styleUrl: './accounts-info.component.css'
+    selector: 'app-accounts-info',
+    standalone: true,
+    imports: [CommonModule],
+    templateUrl: 'accounts-info.html',
+    styleUrl: './accounts-info.component.css'
 })
-export class AccountsInfoComponent {
+export class AccountsInfoComponent implements OnInit {
+    user = {
+        id: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        password: "",
+        enabled: true,
+        role: "string"
+    };
+    constructor(private userService: UserService, private authService: AuthService) { }
+    ngOnInit(): void {
+        const userId = this.authService.getUserId();
+        this.userService.getUserById(userId).subscribe((res: any) => {
+            console.log(res.data);
+            this.user = res.data;
+
+        })
+    }
 
 }

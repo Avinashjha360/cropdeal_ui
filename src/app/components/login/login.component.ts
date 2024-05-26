@@ -7,21 +7,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   selector: 'app-login',
   standalone: true,
   imports: [RouterModule, HttpClientModule, ReactiveFormsModule],
-  template: `
-  <div class="login-container">
-  <div class="login-box">
-        <h2>Login</h2>
-        <form [formGroup]="loginForm" (submit)="getToken()">
-            <input type="text" placeholder="Enter your email" [formControl]="username">
-            <p class="red-text" [hidden]="username.valid || username.untouched">Enter correct valid email</p>
-            <input type="password" placeholder="Enter your password" [formControl]="password">
-            <p class="red-text" [hidden]="password.valid || password.untouched">Password must has at least 6 characters</p>
-            <button type="submit">Login</button>
-        </form>
-        <h3>Don't have an account?<a [routerLink]="['/register']"> <span> Register</span></a></h3> 
-    </div>
-  </div>
-  `,
+  templateUrl: 'login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {

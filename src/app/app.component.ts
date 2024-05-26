@@ -21,14 +21,9 @@ import { SlickCarouselComponent } from './slick-carousel/slick-carousel.componen
     SlickCarouselComponent
     ],
   standalone: true,
-  templateUrl: `./app.component.html`
-,
-
+  templateUrl: `./app.component.html`,
   styleUrl: './app.component.css'
 })
-
-
-
 
 export class AppComponent implements OnInit{
 

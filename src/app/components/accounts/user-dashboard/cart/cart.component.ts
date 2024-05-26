@@ -51,7 +51,7 @@ export class CartComponent implements OnInit{
   removeProductFromCart(productId: String) {
     const userId = this.authService.getUserId();
 
-    this.productService.removeProductFromCart(productId, userId).then((res) => {
+    this.productService.removeProductFromCart(productId, userId).subscribe((res:any) => {
     this.sharedService.setCount(res!.products.length);
 
       this.cart?.products.forEach((value) => {

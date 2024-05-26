@@ -9,8 +9,11 @@ import { AccountsComponent } from './components/accounts/accounts.component';
 import { AccountsInfoComponent } from './components/accounts/accounts-info/accounts-info.component';
 import { authGuard } from './guards/auth.guard';
 import { OrderComponent } from './components/accounts/user-dashboard/order/order.component';
-import { AddProductComponent } from './components/accounts/farmer-dashboard/add-product/add-product.component';
+import { ProductComponent } from './components/accounts/farmer-dashboard/add-product/product.component';
 import { FarmerOrderComponent } from './components/accounts/farmer-dashboard/order/order.component';
+import { UserListComponent } from './components/accounts/admin-dashboard/user-list/user-list.component';
+import { OrderListComponent } from './components/accounts/admin-dashboard/order-list/order-list.component';
+import { ProductListComponent } from './components/accounts/admin-dashboard/product-list/product-list.component';
 
 export const routes: Routes = [
     {
@@ -63,12 +66,25 @@ export const routes: Routes = [
             },
             {
                 path: 'farmer/prdoucts',
-                component: AddProductComponent,
+                component: ProductComponent,
             },
             {
                 path: 'farmer/orders',
                 component: FarmerOrderComponent,
-            }
+            },
+            {
+                path: 'admin/products',
+                component: ProductListComponent,
+            },
+            {
+                path: 'admin/users',
+                component: UserListComponent,
+            },
+            {
+                path: 'admin/orders',
+                component: OrderListComponent,
+            },
+
         ]
 
     },

@@ -1,0 +1,32 @@
+mat-form-field {
+    width: 100%;
+}
+/* order-management.component.css */
+
+.order {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: aliceblue;
+
+  }
+  
+  .order p {
+    margin: 5px 0;
+  }
+  
+  .product {
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    margin-top: 10px;
+  }
+  
+  .product img {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .product p {
+    margin: 5px 0;
+  }
+  

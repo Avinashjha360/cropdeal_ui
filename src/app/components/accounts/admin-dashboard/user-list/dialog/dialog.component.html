@@ -1,0 +1,34 @@
+<form [formGroup]="userForm">
+    <h1 mat-dialog-title class="m-3">{{editData.title}}</h1>
+    <div mat-dialog-content>
+
+        <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input matInput formControlName="phone">
+        </mat-form-field>
+
+        <div>
+            <mat-checkbox formControlName="enabled">Is Active</mat-checkbox>
+        </div>
+
+        <div mat-dialog-actions [align]="'end'">
+            <button mat-raised-button color="warn" mat-dialog-close (click)="this.ref.close(null)">Close</button>
+            <button mat-raised-button color="primary" class="mx-3" (click)="saveProduct()">Update</button>
+        </div>
+    </div>
+</form>

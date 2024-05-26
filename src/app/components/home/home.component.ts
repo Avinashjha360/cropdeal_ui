@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { SingleProductComponent } from '../single-product/single-product.component';
 import { ProductService } from '../../Service/product.service';
 import { Products } from '../../models/products';
-import { AddProductComponent } from '../accounts/farmer-dashboard/add-product/add-product.component';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { SlickCarouselComponent } from '../../slick-carousel/slick-carousel.component';
 
@@ -58,15 +57,13 @@ import { SlickCarouselComponent } from '../../slick-carousel/slick-carousel.comp
 })
 
 export class HomeComponent implements OnInit{
-  productService: ProductService = inject(ProductService);
   productList: Products[] = [];
 
-  constructor() {    
-  }
-  ngOnInit(): void {
-    this.productService.getAllProducts().then((productList: Products[])=>{
-      this.productList = productList;      
-    })    
+  constructor(private productService:ProductService) { }
+  ngOnInit(): void {   
+    this.productService.getAllProducts().subscribe((res:any)=>{
+      this.productList = res.data;
+    })
   }
 
 }

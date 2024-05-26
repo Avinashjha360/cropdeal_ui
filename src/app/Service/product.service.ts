@@ -11,16 +11,13 @@ import { Observable } from 'rxjs';
 export class ProductService {
 
   constructor(private http:HttpClient) { }
-  readonly PATH_OF_API = "http://localhost:8087/api"
+  readonly PATH_OF_API = "http://localhost:8087/api/"
   readonly url2 = 'http://localhost:8087/api/product';
 
   readonly ratingurl = '';
 
-  async getAllProducts():
-  Promise<Products[]>{
-    const productData = await fetch(this.url2);    
-    const data = await productData.json() ?? [];
-    return data.data;
+  getAllProducts(){
+    return this.http.get<any[]>(this.PATH_OF_API+"product");
   }
 
   async getProductById(id: number):
@@ -29,9 +26,23 @@ export class ProductService {
     const data = await productData.json() ?? {};
     return data.data;
   }
+
+  getProductsByUserId(userId: String){
+    return this.http.get<any[]>(this.PATH_OF_API+"product/user/"+userId);
+  }
+
+  addProduct(data:any){
+    return this.http.post(this.PATH_OF_API+"product/addProduct",data);
+  }
+
+  updateProduct(data:any, productId:string){
+    return this.http.put(this.PATH_OF_API+"product/update/"+productId, data);
+  }
+
+
   async postRating(rating: string, feedback: string, productId: string, userId: string):
   Promise<Rating> {
-    const data = await fetch(this.PATH_OF_API+`/ratings/addRating`,{
+    const data = await fetch(this.PATH_OF_API+`ratings/addRating`,{
         method: 'POST',
         headers :{
           'Content-type' : 'application/json; charset=UTF-8'
@@ -48,12 +59,12 @@ export class ProductService {
 
 
   getUserCart(userId:String){
-    return this.http.get(this.PATH_OF_API+`/cart/user/${userId}`);
+    return this.http.get(this.PATH_OF_API+`cart/user/${userId}`);
   }
 
   async addToCart(productId: string, userId: string):
   Promise<CartObject> { 
-    const data = await fetch(this.PATH_OF_API+`/cart/addToCart`,{
+    const data = await fetch(this.PATH_OF_API+`cart/addToCart`,{
         method: 'POST',
         headers :{
           'Content-type' : 'application/json; charset=UTF-8'
@@ -66,42 +77,30 @@ export class ProductService {
     return await data.json() ?? {};
   }
 
+  removeProductFromCart(productId: String, userId: String) { 
+    return this.http.delete(this.PATH_OF_API+"cart/user/"+userId+"/"+productId);
+  }
+
   deleteUserCart(userId:String){
-    return this.http.delete(this.PATH_OF_API+"/cart/delete/"+userId);
+    return this.http.delete(this.PATH_OF_API+"cart/delete/"+userId);
   }
 
   placeOrder(transactionId: String, cartId: String){
-    return this.http.post(this.PATH_OF_API+"/order/createOrder", {
+    return this.http.post(this.PATH_OF_API+"order/createOrder", {
       "transactionId": transactionId,
       "cartId": cartId
     });
   }
 
   getUserOrders(userId: String){
-    return this.http.get<OrderObject[]>(this.PATH_OF_API+"/order/user/"+userId);
+    return this.http.get<OrderObject[]>(this.PATH_OF_API+"order/user/"+userId);
   }
 
   getUserOrdersByProductUserId(userId: String){
-    return this.http.get<any[]>(this.PATH_OF_API+"/order/product/"+userId);
+    return this.http.get<any[]>(this.PATH_OF_API+"order/product/"+userId);
   }
 
-  getProductsByUserId(userId: String){
-    return this.http.get<any[]>(this.PATH_OF_API+"/product/user/"+userId);
-  }
 
-  addProduct(data:any){
-    return this.http.post(this.PATH_OF_API+"/product/addProduct",data);
-  }
 
-  async removeProductFromCart(productId: String, userId: String):
-  Promise<CartObject> { 
-    const data = await fetch(this.PATH_OF_API+`/cart/user/${userId}/${productId}`,{
-        method: 'DELETE',
-        headers :{
-          'Content-type' : 'application/json; charset=UTF-8'
-        }
-    });
-    return await data.json() ?? {};
-  }
 
 }

@@ -11,30 +11,19 @@ import { FarmerDashboardComponent } from './farmer-dashboard/farmer-dashboard.co
   selector: 'app-accounts',
   standalone: true,
   imports: [RouterModule, AdminDashboardComponent, FarmerDashboardComponent, UserDashboardComponent, CommonModule],
-  template: `
-<h3>{{this.getRole()}}</h3>
-<div class="account-container">
-  <app-admin-dashboard *ngIf="this.getRole() === 'ADMIN'"></app-admin-dashboard>
-  <app-farmer-dashboard *ngIf="this.getRole() === 'FARMER'"></app-farmer-dashboard>
-  <app-user-dashboard  *ngIf="this.getRole() === 'DEALER'"></app-user-dashboard>
-
-  <div class="content">
-    <router-outlet></router-outlet>
-  </div>
-</div>
-  `,
+  templateUrl:'accounts.component.html',
   styleUrl: './accounts.component.css'
 })
-export class AccountsComponent{
+export class AccountsComponent {
 
-  constructor(public authService:AuthService){}
+  constructor(public authService: AuthService) { }
 
-  public isLoogedIn():boolean{
+  public isLoogedIn(): boolean {
     return this.authService.isLoggedIn();
   }
 
-  public getRole(): string{
-      return this.authService.getRole();
+  public getRole(): string {
+    return this.authService.getRole();
   }
-  
+
 }
