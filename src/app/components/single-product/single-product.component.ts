@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, SimpleChange, ViewChild } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { Products } from '../../models/products';
+import { Product } from '../../models/products';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 
@@ -16,6 +16,6 @@ import {MatCardModule} from '@angular/material/card';
   styleUrl: './single-product.component.css'
 })
 export class SingleProductComponent {
-  @Input() products!: Products;
+  @Input() products!: Product;
   @ViewChild("productName") productName?: ElementRef
 }

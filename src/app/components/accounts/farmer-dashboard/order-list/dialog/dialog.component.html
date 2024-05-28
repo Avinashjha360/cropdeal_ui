@@ -1,5 +1,4 @@
 <div class="order" mat-dialog-content>
-    <h2 mat-dialog-title *ngIf="this.title === 'delete'">Are you sure you want to delete this order?</h2>
     <p>Order ID: {{ this.order.orderId }}</p>
     <p>Transaction ID: {{ order.transactionId }}</p>
     <p>Date: {{ order.date.substring(0,10) }}</p>
@@ -18,5 +17,4 @@
 
 <div mat-dialog-actions [align]="'end'">
     <button mat-raised-button color="primary" mat-dialog-close (click)="this.ref.close(null)">Close</button>
-    <button *ngIf="this.title === 'delete'" mat-raised-button color="warn" mat-dialog-close (click)="deleteOrder()">Delete</button>
 </div>

@@ -20,5 +20,9 @@ export class UserService {
   getUserById(userId:string){
     return this.http.get(this.PATH_OF_API+"user/"+userId);
   }
+
+  deleteUser(userId:string){
+    return this.http.delete(this.PATH_OF_API+"user/delete/"+userId);
+  }
 }
 

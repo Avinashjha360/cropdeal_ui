@@ -3,13 +3,14 @@ import { ProductService } from '../../../../Service/product.service';
 import { OrderObject } from '../../../../models/order';
 import { CartObject } from '../../../../models/cart';
 import { AuthService } from '../../../../Service/auth.service';
+import { OrderService } from '../../../../Service/order.service';
 
 @Component({
     selector: 'app-order',
     standalone: true,
     imports: [],
     template: `
-  <div class="container">
+  <div class="container mt-4">
         <h1>Order History</h1>
         <div class="order-list">
         @for (order of orderList.reverse(); track $index) {
@@ -38,11 +39,11 @@ import { AuthService } from '../../../../Service/auth.service';
 })
 export class OrderComponent implements OnInit {
     orderList: OrderObject[] = [];
-    constructor(private productService: ProductService, private authService:AuthService) { }
+    constructor(private productService: ProductService, private orderService:OrderService, private authService:AuthService) { }
 
     ngOnInit(): void {
         const userId = this.authService.getUserId()
-        this.productService.getUserOrders(userId).subscribe((res: OrderObject[]) => {
+        this.orderService.getUserOrders(userId).subscribe((res: OrderObject[]) => {
             if (res) {
                 this.orderList = res;
             } else {

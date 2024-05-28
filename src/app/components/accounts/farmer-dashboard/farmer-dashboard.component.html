@@ -1,19 +1,19 @@
-<div class="sidebar">
-  <ul>
+<div class="sidebar mt-4">
+  <ul class="pt-2">
     <a [routerLink]="['/account']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-      <li>Dashboard</li>
+      <li><mat-icon>person</mat-icon> <span>Profile</span></li>
     </a>
     <a [routerLink]="['/account/farmer/prdoucts']" routerLinkActive="active">
-      <li>Manage Products</li>
+      <li><mat-icon>inventory</mat-icon> <span>Manage Products</span></li>
     </a>
     <a [routerLink]="['/account/farmer/orders']" routerLinkActive="active">
-      <li>Orders</li>
+      <li><mat-icon>view_list</mat-icon><span>Orders</span></li>
     </a>
     <a [routerLink]="['/account/profile']" routerLinkActive="active">
-      <li>Profile</li>
+      <li><mat-icon>settings</mat-icon><span>Setting</span></li>
     </a>
     <a (click)="logout()" routerLinkActive="active">
-      <li>Logout</li>
+      <li><mat-icon>logout</mat-icon><span>Logout</span></li>
     </a>
   </ul>
 </div>

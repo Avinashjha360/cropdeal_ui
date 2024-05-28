@@ -1,0 +1,41 @@
+mat-card {
+    margin: 2%;
+    text-align: left;
+}
+h2{
+    text-align: center;
+}
+.mat-mdc-form-field {
+    width: 48%;
+    margin: 0 1%;
+}
+
+.text-area .mat-mdc-form-field {
+    width: 98%;
+}
+
+/* order-management.component.css */
+
+.order {
+    padding: 10px;
+}
+
+.order p {
+    margin: 5px 0;
+}
+
+.product {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.product img {
+    display: block;
+    margin: 5px 2%;
+
+}
+
+.product p {
+    margin: 5px 0;
+}

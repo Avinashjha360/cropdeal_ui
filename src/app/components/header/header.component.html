@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header"  *ngIf="!isLoggedIn()">
     <a [routerLink]="['/']">
         <div class="brand-name">
             <img class="brand-logo" src="/assets/logo.jpg" alt="logo" aria-hidden="true" height="60px" width="70px">
@@ -13,30 +13,31 @@
 
     <div class="icons">
         <a [routerLink]="['/cart']">
-            <mat-icon aria-hidden="false" *ngIf="isLoggedIn()?getRole() === 'DEALER':true"
-                [matBadge]="sharedService.getCounter()>0?sharedService.getCounter():''" matBadgeColor="accent"
-                aria-label="Example cart icon" class="cart-icon">shopping_cart</mat-icon>
+            <mat-icon aria-hidden="false" [matBadge]="''" aria-label="Example cart" class="cart-icon">shopping_cart</mat-icon>
         </a>
         <a [routerLink]="['/login']">
-            <button class="login-button" *ngIf="!isLoggedIn()">Login</button>
+            <button class="login-button">Login</button>
         </a>
-        <mat-toolbar class="account-toolbar" *ngIf="isLoggedIn()">
+    </div>
+</header>
+
+<nav class="navbar navbar-expand-lg" *ngIf="isLoggedIn()">
+    <a class="navbar-brand" href="#"><span class="MuiButton-label">Dashboard</span></a>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <mat-toolbar class="toolbar">
+            <mat-icon color="primary" matBadgeColor="accent" *ngIf="getRole()==='DEALER'" class="account-icon" [routerLink]="['/cart']" [matBadge]="sharedService.getCounter()>0?sharedService.getCounter():''">shopping_cart</mat-icon>
+        </mat-toolbar>
+        <mat-toolbar class="toolbar">
+            <mat-icon class="account-icon" color="primary">notifications</mat-icon>
+        </mat-toolbar>
+        <mat-toolbar class="toolbar">
             <mat-menu #userMenu="matMenu">
                 <a [routerLink]="['/account']"><button mat-menu-item>Accounts</button></a>
                 <button mat-menu-item>Settings</button>
                 <button mat-menu-item>Notifications</button>
                 <button mat-menu-item (click)="logout()">Logout</button>
             </mat-menu>
-            <mat-icon class="account-icon" [matMenuTriggerFor]="userMenu">account_circle</mat-icon>
+            <mat-icon class="account-icon" [matMenuTriggerFor]="userMenu" color="primary">account_circle</mat-icon>
         </mat-toolbar>
-
     </div>
-</header>
-<section class="second-header">
-    <div class="item">SHOP BY CATEGORY</div>
-    <div class="item">OFFERS</div>
-    <div class="item">BLOGS</div>
-    <div class="item">FARMER'S CHOICE</div>
-    <div class="item">DEALER'S CHOICE</div>
-    <div class="item">TOP STORES OF THE MONTH</div>
-</section>
+</nav>

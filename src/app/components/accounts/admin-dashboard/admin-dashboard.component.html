@@ -1,22 +1,22 @@
-<div class="sidebar">
-  <ul>
+<div class="sidebar mt-4">
+  <ul class="pt-2">
     <a [routerLink]="['/account']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-      <li>ACCOUNT MAIN</li>
-    </a>
-    <a [routerLink]="['/account/admin/products']" routerLinkActive="active">
-      <li>Manage Products</li>
+      <li><mat-icon>person</mat-icon> <span>Profile</span></li>
     </a>
     <a [routerLink]="['/account/admin/users']" routerLinkActive="active">
-      <li>Manage Users</li>
+      <li><mat-icon>manage_accounts</mat-icon> <span>Manage Users</span></li>
+    </a>
+    <a [routerLink]="['/account/admin/products']"  routerLinkActive="active">
+      <li><mat-icon>inventory</mat-icon> <span>Manage Products</span></li>
     </a>
     <a [routerLink]="['/account/admin/orders']" routerLinkActive="active">
-      <li>Orders Management</li>
+      <li><mat-icon>view_list</mat-icon><span>Manage Orders</span></li>
     </a>
     <a [routerLink]="['/account/profile']" routerLinkActive="active">
-      <li>PROFILE SETTING</li>
+      <li><mat-icon>settings</mat-icon><span>Setting</span></li>
     </a>
     <a (click)="logout()" routerLinkActive="active">
-      <li>Logout</li>
+      <li><mat-icon>logout</mat-icon><span>Logout</span></li>
     </a>
   </ul>
 </div>

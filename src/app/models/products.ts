@@ -1,14 +1,14 @@
-export interface Products {
-    productId:string;
-    userId:string;
-    name:string;
-    category:string;
-    location:string;
-    price:number;
-    quantity:number;
-    description: string,
-    image: string,
-    available: boolean,
+export interface Product {
+    productId: string;
+    userId: string;
+    name: string;
+    category: string;
+    location: string;
+    price: number;
+    quantity: number;
+    description: string;
+    image: string;
+    available: boolean;
     ratings:[
         {
             id:string,
@@ -17,7 +17,7 @@ export interface Products {
             userId:string
         }
     ]
-}
+  }
 export interface Rating {
     id: string;
     feedback: string;

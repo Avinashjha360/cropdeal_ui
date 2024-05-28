@@ -23,7 +23,7 @@ import { MatIcon } from '@angular/material/icon';
 
 
 export class ProductComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'category', 'price', 'quantity', 'action'];
+  displayedColumns: string[] = ['position', 'name', 'category', 'price', 'quantity', 'available', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -63,11 +63,12 @@ export class ProductComponent implements OnInit {
   editProduct(product:any){    
     this.openPopup("Edit Product", product);
   }
-
+  deleteProduct(product:any){
+    this.openPopup("Delete Product", product);
+  }
   openPopup(title:string, row:any) {
     var _pupup = this.dialog.open(DialogComponent, {
       width: "50%",
-      height: "85%",
       data: {
         title: title,
         data:row

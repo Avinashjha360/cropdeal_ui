@@ -1,6 +1,6 @@
 import { Component, Input, booleanAttribute, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Products, Rating } from '../../models/products';
+import { Product, Rating } from '../../models/products';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ProductService } from '../../Service/product.service';
 import { AuthService } from '../../Service/auth.service';
@@ -64,7 +64,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class RatingsComponent {
   ProductService = inject(ProductService);
-  @Input() product: Products | undefined;
+  @Input() product: Product | undefined;
   @Input() ratings: Rating[] = [];
 
   constructor(private _snackBar: MatSnackBar, public authService: AuthService) {
@@ -96,7 +96,7 @@ export class RatingsComponent {
         }
       })
     }else{
-      this._snackBar.open("Please Log In to post rating on the Products.", 'Close', { verticalPosition: 'top', });
+      this._snackBar.open("Please Log In to post rating on the Products.", 'Close', { verticalPosition: 'top',duration: 2000 });
     }
   }
 }

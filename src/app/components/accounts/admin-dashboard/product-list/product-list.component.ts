@@ -21,7 +21,7 @@ import { ProductService } from '../../../../Service/product.service';
 })
 
 export class ProductListComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'category', 'price', 'quantity', 'action'];
+  displayedColumns: string[] = ['position', 'name', 'category', 'price', 'quantity', 'available', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -34,7 +34,6 @@ export class ProductListComponent implements OnInit {
   }
 
   getAllProducts(){
-    const userId = this.authService.getUserId();
     this.productService.getAllProducts().subscribe((res: any) => {
       if (res.data) {
         this.dataSource = new MatTableDataSource(res.data);
@@ -61,7 +60,6 @@ export class ProductListComponent implements OnInit {
   openPopup(title: string, row: any) {
     var _popup = this.dialog.open(DialogComponent, {
       width: "50%",
-      height: "85%",
       data: {
         title: title,
         data: row

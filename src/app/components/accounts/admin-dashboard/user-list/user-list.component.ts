@@ -19,7 +19,7 @@ import { UserService } from '../../../../Service/user.service';
   styleUrl: './user-list.component.css'
 })
 export class UserListComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'firstName', 'lastName', 'email', 'phone', 'role', 'action'];
+  displayedColumns: string[] = ['position', 'firstName', 'lastName', 'email', 'phone', 'role', 'status', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -54,10 +54,13 @@ export class UserListComponent implements OnInit {
     this.openPopup("Edit User", user);
   }
 
+  delete(user: any){
+    this.openPopup("delete", user);
+  }
+
   openPopup(title: string, row: any) {
     var _pupup = this.dialog.open(DialogComponent, {
       width: "50%",
-      height: "55%",
       data: {
         title: title,
         data: row

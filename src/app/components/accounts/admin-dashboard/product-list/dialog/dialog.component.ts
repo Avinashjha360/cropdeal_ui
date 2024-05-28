@@ -11,11 +11,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../../../Service/auth.service';
 import { ProductService } from '../../../../../Service/product.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dialog',
   standalone: true,
-  imports: [MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule],
+  imports: [ MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule],
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.css'
 })
@@ -28,7 +29,8 @@ export class DialogComponent implements OnInit {
     public ref: MatDialogRef<DialogComponent>,
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private productService: ProductService
+    private productService: ProductService,
+    private _snackBar: MatSnackBar
   ) { }
 
 
@@ -42,7 +44,7 @@ export class DialogComponent implements OnInit {
       description: [''],
       image: [''],
       available: [true],
-      userId: this.authService.getUserId(),
+      userId: [''],
     });
     if (this.editData.data) {
       this.actionBtn = "Update";
@@ -51,15 +53,22 @@ export class DialogComponent implements OnInit {
       this.productForm.controls['location'].setValue(this.editData.data.location);
       this.productForm.controls['price'].setValue(this.editData.data.price);
       this.productForm.controls['quantity'].setValue(this.editData.data.quantity);
+      this.productForm.controls['available'].setValue(this.editData.data.available);
       this.productForm.controls['image'].setValue(this.editData.data.image);
       this.productForm.controls['description'].setValue(this.editData.data.description);
+      this.productForm.controls['userId'].setValue(this.editData.data.userId);
     }
   }
 
   saveProduct() {
     if (this.productForm.valid) {
-      this.productService.updateProduct(this.productForm.value, this.editData.data.productId).subscribe((res:any)=>{
+
+      console.log(this.productForm.value);
+
+      this.productService.updateProduct(this.productForm.value, this.editData.data.productId).subscribe((res: any) => {
         this.ref.close(res.data);
+        this._snackBar.open("Product has been updated", 'Close', { verticalPosition: 'top', duration: 1500 });
+
       });
     } else {
       console.log("Invalid Form");

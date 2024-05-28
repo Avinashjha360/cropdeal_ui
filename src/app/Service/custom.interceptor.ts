@@ -23,8 +23,6 @@ export const CustomInterceptor: HttpInterceptorFn = (req, next) => {
     }
   });  
   // Pass the cloned request with the updated header to the next handler
-
-  
   return next(authReq).pipe(
     tap({
       // next: () => console.log('Request sent'),
@@ -33,10 +31,10 @@ export const CustomInterceptor: HttpInterceptorFn = (req, next) => {
         if(err.error)
           _snackBar.open(err.error.message, 'Close', { verticalPosition: 'top', });
         else
-          _snackBar.open("Invalid credentials. Please check your credentials and try again.", 'Close', { verticalPosition: 'top', });
+          _snackBar.open("Invalid credentials. Please check your credentials and try again.", 'Close', { verticalPosition: 'top',duration: 2000 });
       }
     })
-  );;
+  );
 };
 
 

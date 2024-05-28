@@ -30,12 +30,3 @@ mat-form-field {
     margin: 5px 0;
   }
   
-  .mat-mdc-row{
-    cursor: pointer;
-  }
-
- .mat-mdc-row:hover{
-    background-color:  rgba(238, 247, 255, 0.671);
-  }
-
-  

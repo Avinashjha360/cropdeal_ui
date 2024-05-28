@@ -14,7 +14,6 @@ import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductService } from '../../../../../Service/product.service';
 import { CommonModule } from '@angular/common';
 import { OrderService } from '../../../../../Service/order.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dialog',
@@ -51,11 +50,9 @@ export class DialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public editData: any,
     public ref: MatDialogRef<DialogComponent>,
-    private orderService:OrderService,
-    private _snackBar: MatSnackBar
+    private orderService:OrderService
   ) { }
 
-  productForm !: FormGroup;
 
   ngOnInit(): void {
     this.order = this.editData.data;
@@ -65,7 +62,6 @@ export class DialogComponent implements OnInit {
   deleteOrder() {    
     this.orderService.deleteOrder(this.editData.data.orderId).subscribe((res:any)=>{
       this.ref.close(res);
-      this._snackBar.open("Order has been deleted", 'Close', { verticalPosition: 'top',duration:1500 });
     })
   }
 }

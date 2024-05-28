@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartObject } from '../models/cart';
+import { SharedService } from './shared.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-  private isAuthenticated = false;
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private sharedService:SharedService) { }
 
   login(data: any) {
     return this.http.post("http://localhost:8087/api/login", data);
@@ -69,6 +69,7 @@ export class AuthService {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('role');
     localStorage.removeItem('userId');
+    this.sharedService.setCount(0);
   }
 
   public isLoggedIn() {

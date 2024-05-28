@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     padding: 30px 80px;
-    background-color: #1abc9c;
+    /* background-image: url(https://picsum.photos/400/200); */
 }
 
 .register-box {
@@ -14,10 +14,20 @@
     text-align: center;
 }
 
+.register-box .box{
+    position: relative;
+    left: 0;
+    top: -30px;
+    background: linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232));
+    color: white;
+    padding: 24px 10px;
+    border-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.14) 0rem 0.25rem 1.25rem 0rem, rgba(76, 175, 79, 0.4) 0rem 0.4375rem 0.625rem -0.3125rem;
+}
 .register-box h2 {
     margin-bottom: 8px;
 }
-.register-box p{
+.register-box form p{
     margin:3px 5px;
     color: red;
     text-align: left;
@@ -34,17 +44,18 @@
 .register-box button {
     width: 100%;
     padding: 10px;
-    margin-top: 20px;
-    background-color: #1abc9c;
+    margin: 20px 0px;
+    background: linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232));
     border: none;
     color: #fff;
-    border-radius: 5px;
+    border-radius: 0.5rem;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .register-box button:hover {
-    background-color: #1a8f78;
+    background:linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232));
 }
 
 .register-box h3{
@@ -56,7 +67,7 @@
 }
 .register-box h3 span{
     font-weight: 500;
-    color: #1abc9c;
+    color: linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232));
     cursor: pointer;
 }
  /* Registration Success Page */
@@ -73,10 +84,6 @@ h1 {
     margin-bottom: 10px;
 }
 
-p {
-    color: #333;
-    margin-bottom: 20px;
-}
 
 .button-container {
     margin-top: 20px;
@@ -94,3 +101,52 @@ p {
 .button-container a:hover {
     background-color: #45a049;
 }
+
+
+  
+.bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+    background-image: linear-gradient(-60deg, rgb(0, 0, 0) 50%, rgb(0, 55, 94) 50%);
+
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+  }
+  
+  .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+  }
+  
+  .bg3 {
+    animation-duration:5s;
+  }
+  
+  .content {
+        border-radius:.25em;
+    box-sizing:border-box;
+    left:50%;
+    padding:10vmin;
+    position:fixed;
+    text-align:center;
+    top:50%;
+    transform:translate(-50%, -50%);
+  }
+  
+  h1 {
+    font-family:monospace;
+  }
+  
+  @keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+  }

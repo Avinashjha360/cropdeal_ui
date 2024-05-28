@@ -2,21 +2,32 @@
     display: flex;
     justify-content: center;
     padding: 30px 80px;
-    background-color: #1abc9c;
+   
 }
 .login-box {
     background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
+    padding: 0px  20px;
+    border-radius: 0.5rem;
+    margin-top: 50px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     width: 300px;
     text-align: center;
+    z-index: 1;
 }
-
+.login-box .box{
+    position: relative;
+    left: 0;
+    top: -30px;
+    background: linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232));
+    color: white;
+    padding: 24px 10px;
+    border-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.14) 0rem 0.25rem 1.25rem 0rem, rgba(76, 175, 79, 0.4) 0rem 0.4375rem 0.625rem -0.3125rem;
+}
 .login-box h2 {
     margin-bottom: 8px;
 }
-.login-box p{
+.login-box form p{
     margin:3px 5px;
     color: red;
     text-align: left;
@@ -24,7 +35,7 @@
 .login-box input {
     width: 100%;
     padding: 10px;
-    margin-top: 20px;
+    margin-top: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
@@ -33,28 +44,77 @@
 .login-box button {
     width: 100%;
     padding: 10px;
-    margin-top: 20px;
-    background-color: #1abc9c;
+    margin: 20px 0px;
+    background: linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232));
     border: none;
     color: #fff;
-    border-radius: 3px;
+    border-radius: 0.5rem;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .login-box button:hover {
-    background-color: #1a8f78;
+    background:linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232));
 }
 
 .login-box h3{
     margin-top: 10px;
     font-weight: 300;
+    font-family: Roboto, Helvetica, Arial, sans-serif ;
 }
 .login-box h3 a{
     text-decoration: none;
 }
 .login-box h3 span{
+    letter-spacing: -0.34px;
     font-weight: 500;
-    color: #1abc9c;
-    cursor: pointer;
 }
+
+
+  
+.bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+    background-image: linear-gradient(-60deg, rgb(0, 0, 0) 50%, rgb(0, 69, 115) 60%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+  }
+  
+  .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:6s;
+  }
+  
+  .bg3 {
+    animation-duration:7s;
+  }
+  
+  .content {
+    border-radius:.25em;
+    box-sizing:border-box;
+    left:50%;
+    padding:10vmin;
+    position:fixed;
+    text-align:center;
+    top:50%;
+    transform:translate(-50%, -50%);
+  }
+  
+  h1 {
+    font-family:monospace;
+  }
+  
+  @keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+  }

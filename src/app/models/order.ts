@@ -1,4 +1,4 @@
-import { Products } from "./products"
+import { Product } from "./products"
 
  interface Order {
     orderId: String,
@@ -6,7 +6,7 @@ import { Products } from "./products"
     date:String,
     item:{
       id:string,
-      products:Products[],
+      products:Product[],
       totalAmount:number
     },
   }
@@ -15,5 +15,5 @@ import { Products } from "./products"
     orderId!: String;
     transactionId!: String;
     date!: String;
-    item!: { id: string; userId: String; products: Products[]; totalAmount: number; };
+    item!: { id: string; userId: String; products: Product  []; totalAmount: number; };
   }

@@ -3,10 +3,11 @@
     min-height: 100vh;
     margin: auto;
     padding: 20px;
-    background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   .form-group {
     margin: 10px 0px;
+  }
+  mat-form-field{
+    width: 100%;
   }

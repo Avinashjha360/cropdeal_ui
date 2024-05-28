@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../Service/auth.service';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { RegisterSuccessComponent } from './register-success.component';
 
 @Component({
@@ -10,8 +10,16 @@ import { RegisterSuccessComponent } from './register-success.component';
   imports: [RouterModule, ReactiveFormsModule],
   template: `
   <div class="register-container">
+  <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    <div class="content">
+    </div>
     <div class="register-box">
-        <h2>Registration</h2>
+    <div class="box">
+            <h2>Join us today</h2>
+            <p>Enter your information to register</p>
+        </div>
         <form [formGroup]="registerForm" (submit)="registerUser()">
             <input type="text" placeholder="Enter your first name" [formControl]="firstName">
             <p class="red-text" [hidden]="firstName.valid || firstName.untouched">Please enter a valid first name</p>
@@ -22,7 +30,7 @@ import { RegisterSuccessComponent } from './register-success.component';
             <input type="text" placeholder="Enter your phone number" [formControl]="phone">
             <p class="red-text" [hidden]="phone.valid || phone.untouched">Please enter a valid phone number</p>
             <input type="password" placeholder="Enter your password" [formControl]="password">
-            <p class="red-text" [hidden]="password.valid || password.untouched">Please enter a valid password</p>
+            <p class="red-text" [hidden]="password.valid || password.untouched">Password should be at least 6 characters long and must include a number and a special character.</p>
            
             <select name="userType"  [formControl]="role">
                 <option disabled [selected]="true">Select your role</option>
@@ -49,10 +57,14 @@ export class RegisterComponent {
     Validators.email
   ]);
   phone = new FormControl('', [Validators.required]);
+
   password = new FormControl('', [
     Validators.required,
-    Validators.minLength(6)
+    Validators.minLength(6),
+    this.numberValidator,
+    this.specialCharacterValidator
   ]);
+
   role = new FormControl('', [Validators.required]);
 
   registerForm = new FormGroup({
@@ -79,4 +91,20 @@ export class RegisterComponent {
     }
   }
 
+  // Custom validator function for requiring at least one number
+  numberValidator(control: AbstractControl): ValidationErrors | null {
+    const numberRegex = /\d/;
+    if (!numberRegex.test(control.value)) {
+      return { missingNumber: true };
+    }
+    return null;
+  }
+
+  specialCharacterValidator(control: AbstractControl): ValidationErrors | null {
+    const specialCharacterRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    if (!specialCharacterRegex.test(control.value)) {
+      return { missingSpecialCharacter: true };
+    }
+    return null;
+  }
 }

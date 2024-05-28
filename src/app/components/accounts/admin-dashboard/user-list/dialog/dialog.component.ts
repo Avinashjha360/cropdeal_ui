@@ -10,27 +10,31 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../../../../Service/user.service';
+import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dialog',
   standalone: true,
-  imports: [MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule],
+  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule],
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.css'
 })
 export class DialogComponent implements OnInit {
   inputData: any;
-  inputTitle: string = '';
+  title: string = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public editData: any,
     public ref: MatDialogRef<DialogComponent>,
     private formBuilder: FormBuilder,
-    private userService:UserService
+    private userService:UserService,
+    private _snackBar:MatSnackBar
   ) { }
 
   userForm !: FormGroup;
 
   ngOnInit(): void {
+    this.title = this.editData.title;
     this.userForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -51,14 +55,21 @@ export class DialogComponent implements OnInit {
     }
   }
 
-  saveProduct() {
+  saveUser() {
     if (this.userForm.valid) {
       this.userService.updateUser(this.userForm.value, this.editData.data.id).subscribe((res:any)=>{
         this.ref.close(res.data);
+        this._snackBar.open("User Info has been updated", 'Close', { verticalPosition: 'top', duration:1500 });
       });
     } else {
       console.log("Invalid Form");
     }
+  }
+  deleteUser(){
+    this.userService.deleteUser(this.editData.data.id).subscribe((res:any)=>{
+      this.ref.close(res);
+      this._snackBar.open("User has been deleted", 'Close', { verticalPosition: 'top', duration:1500 });
+    })
   }
 
 }

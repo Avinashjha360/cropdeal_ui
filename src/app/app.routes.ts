@@ -10,10 +10,10 @@ import { AccountsInfoComponent } from './components/accounts/accounts-info/accou
 import { authGuard } from './guards/auth.guard';
 import { OrderComponent } from './components/accounts/user-dashboard/order/order.component';
 import { ProductComponent } from './components/accounts/farmer-dashboard/add-product/product.component';
-import { FarmerOrderComponent } from './components/accounts/farmer-dashboard/order/order.component';
 import { UserListComponent } from './components/accounts/admin-dashboard/user-list/user-list.component';
 import { OrderListComponent } from './components/accounts/admin-dashboard/order-list/order-list.component';
 import { ProductListComponent } from './components/accounts/admin-dashboard/product-list/product-list.component';
+import { FramerOrderListComponent } from './components/accounts/farmer-dashboard/order-list/order-list.component';
 
 export const routes: Routes = [
     {
@@ -70,7 +70,7 @@ export const routes: Routes = [
             },
             {
                 path: 'farmer/orders',
-                component: FarmerOrderComponent,
+                component: FramerOrderListComponent,
             },
             {
                 path: 'admin/products',

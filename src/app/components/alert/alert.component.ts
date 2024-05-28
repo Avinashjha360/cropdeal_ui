@@ -19,7 +19,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class AlertComponent {
 @Input() message!:string;
 constructor(private _snackBar: MatSnackBar, private sharedService: SharedService){
-  this._snackBar.open("Please Log In to Add Products to Your Cart.", 'Close', { verticalPosition: 'top',});
+  this._snackBar.open("Please Log In to Add Products to Your Cart.", 'Close', { verticalPosition: 'top', duration:1500});
 }
 closeAlert(){
   this.sharedService.setAlert(false, "");

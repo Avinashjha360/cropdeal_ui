@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Products, Rating } from '../models/products';
-import { CartObject } from '../models/cart';
+import { Product, Rating } from '../models/products';
 import { HttpClient } from '@angular/common/http';
-import { OrderObject } from '../models/order';
-import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +19,7 @@ export class ProductService {
   }
 
   async getProductById(id: number):
-  Promise<Products> {
+  Promise<Product> {
     const productData = await fetch(`${this.url2}/${id}`);  
     const data = await productData.json() ?? {};
     return data.data;
@@ -56,51 +54,4 @@ export class ProductService {
     })
     return await data.json() ?? {};
   }
-
-
-  getUserCart(userId:String){
-    return this.http.get(this.PATH_OF_API+`cart/user/${userId}`);
-  }
-
-  async addToCart(productId: string, userId: string):
-  Promise<CartObject> { 
-    const data = await fetch(this.PATH_OF_API+`cart/addToCart`,{
-        method: 'POST',
-        headers :{
-          'Content-type' : 'application/json; charset=UTF-8'
-        },
-        body:JSON.stringify({
-          "productId":productId,
-          "userId":userId
-        })
-    });
-    return await data.json() ?? {};
-  }
-
-  removeProductFromCart(productId: String, userId: String) { 
-    return this.http.delete(this.PATH_OF_API+"cart/user/"+userId+"/"+productId);
-  }
-
-  deleteUserCart(userId:String){
-    return this.http.delete(this.PATH_OF_API+"cart/delete/"+userId);
-  }
-
-  placeOrder(transactionId: String, cartId: String){
-    return this.http.post(this.PATH_OF_API+"order/createOrder", {
-      "transactionId": transactionId,
-      "cartId": cartId
-    });
-  }
-
-  getUserOrders(userId: String){
-    return this.http.get<OrderObject[]>(this.PATH_OF_API+"order/user/"+userId);
-  }
-
-  getUserOrdersByProductUserId(userId: String){
-    return this.http.get<any[]>(this.PATH_OF_API+"order/product/"+userId);
-  }
-
-
-
-
 }

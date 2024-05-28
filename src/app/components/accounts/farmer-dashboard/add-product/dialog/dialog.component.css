@@ -1,13 +1,40 @@
-mat-card{
+mat-card {
     margin: 2%;
     text-align: left;
 }
-.mat-mdc-form-field{
+
+.mat-mdc-form-field {
     width: 48%;
     margin: 0 1%;
 }
 
-.text-area .mat-mdc-form-field{
+.text-area .mat-mdc-form-field {
     width: 98%;
 }
 
+.card {
+    margin: 10px;
+    border: unset;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+.card-text {
+    margin-bottom: 5px;
+}
+
+.text-success {
+    font-weight: bold;
+    color: #28a745;
+}
+
+.text-danger {
+    font-weight: bold;
+    color: #dc3545;
+}

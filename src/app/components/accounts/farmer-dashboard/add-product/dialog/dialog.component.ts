@@ -11,11 +11,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../../../Service/auth.service';
 import { ProductService } from '../../../../../Service/product.service';
+import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dialog',
   standalone: true,
-  imports: [MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule],
+  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule],
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.css'
 })
@@ -28,7 +30,8 @@ export class DialogComponent implements OnInit {
     public ref: MatDialogRef<DialogComponent>,
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private productService: ProductService
+    private productService: ProductService,
+    private _snackBar:MatSnackBar
   ) { }
 
   productForm !: FormGroup;
@@ -63,6 +66,7 @@ export class DialogComponent implements OnInit {
         this.productService.addProduct(this.productForm.value).subscribe((res: any) => {
           this.productForm.reset();
           this.ref.close(res.data);
+          this._snackBar.open("Product has been added", 'Close', { verticalPosition: 'top', duration:1500 });
         })
       }
       else {
@@ -78,7 +82,13 @@ export class DialogComponent implements OnInit {
   updateProduct() {
     this.productService.updateProduct(this.productForm.value, this.editData.data.productId).subscribe((res:any)=>{
       this.ref.close(res.data);
+      this._snackBar.open("Product Info has been updated", 'Close', { verticalPosition: 'top', duration:1500 });
+
     });
+  }
+
+  deleteProduct(){
+    
   }
 }
 

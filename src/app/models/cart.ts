@@ -1,15 +1,15 @@
-import { Products } from "./products"
+import { Product } from "./products"
 
  interface Cart {
     id: string,
     userId: string,
-    products:Products [],
+    products:Product [],
     totalAmount: number,
   }
 
   export class CartObject implements Cart {
     id!: string;
     userId!: string;
-    products!: Products[];
+    products!: Product[];
     totalAmount!: number;
   }

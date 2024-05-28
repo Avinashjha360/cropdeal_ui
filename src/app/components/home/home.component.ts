@@ -2,7 +2,7 @@ import { Component, Inject, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SingleProductComponent } from '../single-product/single-product.component';
 import { ProductService } from '../../Service/product.service';
-import { Products } from '../../models/products';
+import { Product } from '../../models/products';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { SlickCarouselComponent } from '../../slick-carousel/slick-carousel.component';
 
@@ -16,33 +16,7 @@ import { SlickCarouselComponent } from '../../slick-carousel/slick-carousel.comp
     SlickCarouselComponent
   ],
   template: `
-  <mdb-carousel [controls]="true" [indicators]="true" [animation]="'fade'">
-  <mdb-carousel-item>
-    <img
-      src="/assets/carausel5.jpg"
-      class="d-block w-100"
-      alt="..."
-      height="250"
-    />
-  </mdb-carousel-item>
-  <mdb-carousel-item>
-    <img
-      src="/assets/carausel2.jpg"
-      class="d-block w-100"
-      alt="..."
-      height="250"
-    />
-  </mdb-carousel-item>
-  <mdb-carousel-item>
-    <img
-      src="/assets/carausel4.jpg"
-      class="d-block w-100"
-      alt="..."
-      height="250"
-    />
-  </mdb-carousel-item>
-</mdb-carousel>
-<app-slick-carousel [products]="productList"></app-slick-carousel>
+
 <app-slick-carousel [products]="productList"></app-slick-carousel>
 
     <section class="results">
@@ -57,7 +31,7 @@ import { SlickCarouselComponent } from '../../slick-carousel/slick-carousel.comp
 })
 
 export class HomeComponent implements OnInit{
-  productList: Products[] = [];
+  productList: Product[] = [];
 
   constructor(private productService:ProductService) { }
   ngOnInit(): void {   

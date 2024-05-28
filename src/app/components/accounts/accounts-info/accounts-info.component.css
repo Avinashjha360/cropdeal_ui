@@ -1,16 +1,21 @@
 .container {
     max-width: 900px;
-    margin: auto;
+    min-height: 77vh;
+    margin: 25px auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+h5 {
     text-align: left;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(52, 71, 103);
 } 
-h1 a{
+h5 a{
     color: #2874f0;
     font-size: small;
     font-weight: 600;
@@ -31,4 +36,23 @@ h1 a{
 
 .field-value {
     margin-left: 10px;
+}
+
+.row{
+    margin: 20px 0px;
+}
+
+.row input{
+    border: unset;
+    border-bottom: 1px solid rgb(52, 71, 103);
+    color: rgb(52, 71, 103);
+    border-radius: 0;
+    padding-left: 0;
+}
+
+.form-control {
+    background-color: #f8fbff;
+}
+.form-control:disabled {
+    background-color: unset;
 }

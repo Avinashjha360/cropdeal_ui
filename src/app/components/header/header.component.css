@@ -5,6 +5,7 @@
     justify-content: space-between;
     padding: var(--content-padding, 10px);
     background-color: #ffffff;
+    border-bottom: 1px solid #295c74;
 }
 
 .brand-name {
@@ -56,14 +57,17 @@
 
 .search-button:hover i {
     color: #333;
+
 }
 
 .login-button {
-    color: white;
-    border: unset;
-    margin-left: 20px;
-    padding: 5px 10px;
-    background-color: rgb(13, 110, 253);
+    padding:5px 15px;
+    background: linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232));
+    border: none;
+    color: #fff;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .icons {
@@ -74,72 +78,37 @@
 
 .icons .cart-icon {
     font-size: 32px;
-    margin-right: 8px;
-}
-
-.account-toolbar {
-    cursor: pointer;
-    background-color: unset;
-}
-
-.account-icon {
-    font-size: 33px;
-    height: 33px;
-    width: 33px;
+    margin-right: 26px;
 }
 
 a {
     text-decoration: none;
 }
 
-.second-header {
-    display: flex;
-    background-color: rgb(0, 51, 128);
-    color: white;
+.navbar{
+    background-color: #ffffff;
+    border-bottom: 1px solid #295c74;
+    padding: 0 1%;
 }
 
-.second-header .item {
-    padding: 14px 14px;
+.toolbar {
+    width: 4%;
+    padding: 0;
+    color: rgb(85, 85, 85);
+    background-color: unset;
+    cursor: pointer;
+}
+.navbar-brand{
+    color:rgb(85, 85, 85);
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+}
+.vert{
+    height: 30px;
+    width: 30px;
+    font-size: 30px;
     cursor: pointer;
 }
 
-.second-header .item:hover {
-    background-color: rgb(228, 37, 41);
-}
-
-
-/* Media query for responsiveness */
-@media only screen and (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        padding: 10px;
-    }
-
-    .search-input {
-        width: 100%; /* Make the search input full width */
-    }
-
-    .search-button {
-        position: relative;
-        top: unset;
-        right: unset;
-        margin-top: 10px;
-        /* Adjust margins as needed */
-    }
-
-    .second-header {
-        display: flex; /* Show the second header on small screens */
-    }
-
-    .brand-name,
-    .search-container,
-    .icons {
-        width: 100%; /* Make these elements full width */
-        text-align: center; /* Center align the content */
-        margin-bottom: 10px; /* Add some space between elements */
-    }
-
-    .icons {
-        justify-content: center; /* Center align icons */
-    }
-}

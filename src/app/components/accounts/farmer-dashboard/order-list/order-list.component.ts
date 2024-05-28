@@ -21,7 +21,7 @@ import { OrderService } from '../../../../Service/order.service';
   templateUrl: './order-list.component.html',
   styleUrl: './order-list.component.css'
 })
-export class OrderListComponent implements OnInit {
+export class FramerOrderListComponent implements OnInit {
   orders = [
     {
       "orderId": "123456",
@@ -52,14 +52,15 @@ export class OrderListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private orderService:OrderService, private dialog: MatDialog) { }
+  constructor(private orderService:OrderService, private authService:AuthService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getAllOrder();
   }
 
   getAllOrder(){
-    this.orderService.getAllOrder().subscribe((res:any)=>{
+    const userId = this.authService.getUserId();
+    this.orderService.getUserOrdersByProductUserId(userId).subscribe((res:any)=>{
       if (res) {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
