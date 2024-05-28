@@ -21,8 +21,8 @@ import { SlickCarouselComponent } from '../../slick-carousel/slick-carousel.comp
 
     <section class="results">
       <app-single-product
-        *ngFor="let products of productList"
-        [products]="products">
+        *ngFor="let products of productList | slice:0:12"
+        [products]="products"> 
       </app-single-product>
     </section>
 

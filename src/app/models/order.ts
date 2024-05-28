@@ -1,6 +1,6 @@
 import { Product } from "./products"
 
- interface Order {
+ export interface OrderObject {
     orderId: String,
     transactionId:String
     date:String,
@@ -9,11 +9,4 @@ import { Product } from "./products"
       products:Product[],
       totalAmount:number
     },
-  }
-
-  export class OrderObject implements Order {
-    orderId!: String;
-    transactionId!: String;
-    date!: String;
-    item!: { id: string; userId: String; products: Product  []; totalAmount: number; };
   }

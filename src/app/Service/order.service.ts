@@ -23,6 +23,10 @@ export class OrderService {
       "cartId": cartId
     });
   }
+  
+  getOrderByOrderId(orderId:string){
+    return this.http.get<OrderObject[]>(this.PATH_OF_API+"order/"+orderId);
+  }
 
   getUserOrders(userId: String){
     return this.http.get<OrderObject[]>(this.PATH_OF_API+"order/user/"+userId);
@@ -30,6 +34,10 @@ export class OrderService {
 
   getUserOrdersByProductUserId(userId: String){
     return this.http.get<any[]>(this.PATH_OF_API+"order/product/"+userId);
+  }
+
+  public createTransaction(amount:string){
+    return this.http.get(this.PATH_OF_API+"createTransaction/"+amount);
   }
 
 }

@@ -14,6 +14,8 @@ import { UserListComponent } from './components/accounts/admin-dashboard/user-li
 import { OrderListComponent } from './components/accounts/admin-dashboard/order-list/order-list.component';
 import { ProductListComponent } from './components/accounts/admin-dashboard/product-list/product-list.component';
 import { FramerOrderListComponent } from './components/accounts/farmer-dashboard/order-list/order-list.component';
+import { OrderSuccessComponent } from './components/accounts/user-dashboard/order-success/order-success.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const routes: Routes = [
     {
@@ -54,6 +56,10 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
+                component: DashboardComponent,
+            },
+            {
+                path: 'profile',
                 component: AccountsInfoComponent,
             },
             {
@@ -63,6 +69,11 @@ export const routes: Routes = [
             {
                 path: 'dealer/orders',
                 component: OrderComponent,
+            },
+            {
+                path: 'dealer/orders/:id',
+                component: OrderSuccessComponent,
+                title: 'Order details'
             },
             {
                 path: 'farmer/prdoucts',

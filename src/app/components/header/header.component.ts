@@ -9,7 +9,8 @@ import { SharedService } from '../../Service/shared.service';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../Service/cart.service';
-
+import {MatDividerModule} from '@angular/material/divider';
+import {MatButtonModule} from '@angular/material/button';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -20,7 +21,9 @@ import { CartService } from '../../Service/cart.service';
     MatIconModule,
     MatMenuTrigger,
     MatBadgeModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDividerModule,
+    MatButtonModule
   ],
   templateUrl: 'header.component.html',
   styleUrl: './header.component.css'

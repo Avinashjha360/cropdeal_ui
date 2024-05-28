@@ -1,0 +1,61 @@
+/* Common styles */
+.item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    border-radius: 8px;
+    margin: 3% 0;
+}
+
+.item h5,
+.item h4 {
+    margin: 0;
+    padding: 0;
+}
+
+.item .cart-icon {
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .item {
+        height: auto;
+    }
+}
+
+/* Specific styles */
+.dashboard-1,
+.dashboard-2{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.dashboard-1 .item {
+    height: 180px;
+    background-color: rgb(13, 148, 136);
+    color: white;
+}
+.dashboard-1 .item .cart-icon{
+    transform: scale(1.5);
+}
+.dashboard-2 .item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(191, 191, 191, 0.596);
+    color: rgb(0, 0, 0);
+    padding: 0 15px;
+}
+
+.dashboard-3 p{
+    color: rgb(55 65 81);
+    letter-spacing: 1px;
+}

@@ -56,6 +56,7 @@ export class DialogComponent implements OnInit {
       this.productForm.controls['price'].setValue(this.editData.data.price);
       this.productForm.controls['quantity'].setValue(this.editData.data.quantity);
       this.productForm.controls['image'].setValue(this.editData.data.image);
+      this.productForm.controls['available'].setValue(this.editData.data.available);
       this.productForm.controls['description'].setValue(this.editData.data.description);
     }
   }

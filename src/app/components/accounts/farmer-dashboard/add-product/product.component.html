@@ -48,7 +48,10 @@
       <!-- Available Status Column -->
       <ng-container matColumnDef="available">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-        <td mat-cell *matCellDef="let row"> {{row.available?'Available':'Unavailable'}} </td>
+        <td mat-cell *matCellDef="let row">
+          <span class="badge text-bg-success" *ngIf="row.available">Available</span>
+          <span class="badge text-bg-danger" *ngIf="!row.available">Unavailable</span>
+      </td>
       </ng-container>
 
       <!-- Action Column -->

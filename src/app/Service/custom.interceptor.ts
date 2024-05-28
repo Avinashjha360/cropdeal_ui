@@ -29,7 +29,7 @@ export const CustomInterceptor: HttpInterceptorFn = (req, next) => {
       // complete: () => console.log('Request completed'),
       error: (err) => {        
         if(err.error)
-          _snackBar.open(err.error.message, 'Close', { verticalPosition: 'top', });
+          _snackBar.open(err.error.message, 'Close', { verticalPosition: 'top', duration: 2000 });
         else
           _snackBar.open("Invalid credentials. Please check your credentials and try again.", 'Close', { verticalPosition: 'top',duration: 2000 });
       }

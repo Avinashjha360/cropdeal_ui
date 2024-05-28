@@ -1,3 +1,32 @@
+.top-nav {
+    background-color: #e7e7e7; /* Background color */
+    color: #1f1f1f; /* Text color */
+    padding: 15px 0; /* Vertical padding */
+}
+
+ .list-inline-item i {
+    font-size: 15px; /* Adjust size of social icons */
+}
+
+.login-btn {
+    background-color: #fff; 
+    color: #333; 
+    padding: 5px 15px; 
+    border: none; /* Remove border */
+    border-radius: 5px; /* Add border radius */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold font */
+}
+
+.top-nav li{
+    display: inline;
+    margin: 0 10px;
+}
+
+.top-nav .right{
+    display: flex;
+    justify-content: right;
+}
 /* Set up default styles */
 .header {
     display: flex;
@@ -5,28 +34,14 @@
     justify-content: space-between;
     padding: var(--content-padding, 10px);
     background-color: #ffffff;
-    border-bottom: 1px solid #295c74;
+    border-bottom: 1px solid #141414;
 }
 
 .brand-name {
     margin-right: auto;
 }
 
-.btn {
-    display: inline-block;
-    background-color: #4583a0;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
 
-.btn:hover {
-    background-color: #295c74;
-}
 
 .search-container {
     position: relative;
@@ -60,16 +75,6 @@
 
 }
 
-.login-button {
-    padding:5px 15px;
-    background: linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232));
-    border: none;
-    color: #fff;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
 .icons {
     display: flex;
     justify-content: space-between;
@@ -87,7 +92,7 @@ a {
 
 .navbar{
     background-color: #ffffff;
-    border-bottom: 1px solid #295c74;
+    border-bottom: 2px solid #3f51b5;
     padding: 0 1%;
 }
 
@@ -105,6 +110,7 @@ a {
     display: flex;
     align-items: center;
 }
+
 .vert{
     height: 30px;
     width: 30px;
@@ -112,3 +118,20 @@ a {
     cursor: pointer;
 }
 
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10% 0%;
+}
+.fixed-img {
+    height: 100px; /* Set your desired fixed height */
+    width: 100px;
+    object-fit: cover; /* Ensure the image covers the entire space */
+    object-position: center; /* Center the image within its container */
+}
+
+.card-body {
+    padding: 1rem; /* Add padding to the card body */
+}

@@ -1,31 +1,80 @@
 <!-- You can now use your library component in app.component.html -->
-
-<ngx-slick-carousel #slickModal="slick-carousel" [config]="slideConfig2">
-
+<ngx-slick-carousel #slickModal="slick-carousel" [config]="slideConfig2" class="first-carousel">
     <div ngxSlickItem class="slide">
         <mat-card>
-            <img src="/assets/carausel4.jpg" class="d-block w-100" alt="..." height="300" />
+            <img src="/assets/carausel1.jpg" class="d-block w-100" alt="..." height="350" />
         </mat-card>
     </div>
     <div ngxSlickItem class="slide">
         <mat-card>
-            <img src="/assets/carausel2.jpg" class="d-block w-100" alt="..." height="300" />
+            <img src="/assets/carausel3.jpg" class="d-block w-100" alt="..." height="350" />
         </mat-card>
     </div>
     <div ngxSlickItem class="slide">
         <mat-card>
-            <img src="/assets/carausel5.jpg" class="d-block w-100" alt="..." height="300" />
+            <img src="/assets/carausel2.jpg" class="d-block w-100" alt="..." height="350" />
         </mat-card>
     </div>
 
 </ngx-slick-carousel>
 
 
+<!-- Featured Products Section -->
+<section class="featured-products">
+    <div class="container">
+        <div class="row mt-5">
+            <!-- Product Cards -->
+            <div class="col-md-3">
+                <mat-card>
+                    <img mat-card-image src="https://ogami-react.vercel.app/assets/images/sections/category/one/1.png"
+                        alt="Image of " class="mx-4 mt-1" height="220">
+                    <mat-card-content>
+                        <p class="product-info my-0">Category</p>
+                        <p class="product-name mt-1" #productName>12 Items</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-md-3">
+                <mat-card>
+                    <img mat-card-image src="https://ogami-react.vercel.app/assets/images/sections/category/one/2.png"
+                        alt="Image of " class="mx-4 mt-1" height="220">
+                    <mat-card-content>
+                        <p class="product-info my-0">Category</p>
+                        <p class="product-name mt-1" #productName>12 Items</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-md-3">
+                <mat-card>
+                    <img mat-card-image src="https://ogami-react.vercel.app/assets/images/sections/category/one/3.png"
+                        alt="Image of " class="mx-4 mt-1" height="220">
+                    <mat-card-content>
+                        <p class="product-info my-0">Category</p>
+                        <p class="product-name mt-1" #productName>12 Items</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-md-3">
+                <mat-card>
+                    <img mat-card-image src="https://ogami-react.vercel.app/assets/images/sections/category/one/4.png"
+                        alt="Image of " class="mx-4 mt-1" height="220">
+                    <mat-card-content>
+                        <p class="product-info my-0">Category</p>
+                        <p class="product-name mt-1" #productName>12 Items</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <!-- Repeat this for more products -->
+        </div>
+    </div>
+</section>
+
 
 <!-- You can now use your library component in app.component.html -->
 <div style="margin-left: 2%; margin-right: 2%;" class="mt-4">
     <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
-        @for (product of products; track product.productId) {
+            <ng-container *ngFor="let product of products | slice:0:16">
+
         <div ngxSlickItem class="slide">
             <a [routerLink]="['/details', product.productId]" class="learn-more">
                 <mat-card>
@@ -38,7 +87,55 @@
                 </mat-card>
             </a>
         </div>
-        }
+            </ng-container>
     </ngx-slick-carousel>
-
 </div>
+
+
+
+<!-- Featured Products Section -->
+<section class="featured-products mt-5">
+    <div class="container">
+        <h2 class="text-center my-4">Featured Products</h2>
+        <div class="row" >
+            <!-- Product Cards -->
+            <ng-container *ngFor="let product of vegetable | slice:0:8">
+
+            <div class="col-md-3" >
+                <div class="card mb-4" [routerLink]="['/details', product.productId]">
+                    <img src="{{product.image}}" class="card-img-top fixed-img" alt="Product Image" height="200">
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.name}}</h5>
+                        <p class="card-text">{{product.category}}</p>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Featured Products Section -->
+<section class="featured-products mt-5">
+    <div class="container">
+        <h2 class="text-center my-4">Featured Products</h2>
+        <div class="row">
+            <!-- Product Cards -->
+
+
+            <ng-container *ngFor="let product of fruit | slice:0:8">
+                <div class="col-md-3">
+                    <div class="card mb-4" [routerLink]="['/details', product.productId]">
+                        <img src="{{product.image}}" class="card-img-top fixed-img" alt="Product Image" height="200">
+                        <div class="card-body">
+                            <h5 class="card-title">{{product.name}}</h5>
+                            <p class="card-text">{{product.category}}</p>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</section>

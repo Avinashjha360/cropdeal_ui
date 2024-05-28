@@ -31,3 +31,20 @@ a {
 p {
   color: rgb(34, 2, 2);
 }
+
+.first-carousel .slide{
+  margin: 0;
+}
+
+.fixed-img {
+  max-height: 200px; /* Set your desired fixed height */
+  object-fit: cover; /* Ensure the image covers the entire space */
+  object-position: center; /* Center the image within its container */
+}
+
+.card-body {
+  padding: 1rem; /* Add padding to the card body */
+}
+.card-img{
+  padding: 150%;
+}
