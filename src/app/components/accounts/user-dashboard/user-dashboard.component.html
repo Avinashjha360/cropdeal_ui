@@ -1,19 +1,28 @@
-<div class="sidebar mt-4">
-  <ul class="pt-2">
-    <a [routerLink]="['/account']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-      <li><mat-icon>dashboard</mat-icon> <span>Dashboard</span></li>
-    </a>
-    <a [routerLink]="['/account/dealer/orders']" routerLinkActive="active">
-      <li><mat-icon>view_list</mat-icon><span>My Orders</span></li>
-    </a>
-    <a [routerLink]="['/account/cart']" routerLinkActive="active">
-      <li><mat-icon>inventory</mat-icon> <span>My Cart</span></li>
-    </a>
-    <a [routerLink]="['/account/profile']" routerLinkActive="active">
-      <li><mat-icon>settings</mat-icon><span>Setting</span></li>
-    </a>
-    <a (click)="logout()" routerLinkActive="active">
-      <li><mat-icon>logout</mat-icon><span>Logout</span></li>
-    </a>
-  </ul>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3 col-md-3">
+      <div class="sidebar mt-5">
+        <ul class="pt-2">
+          <a [routerLink]="['/dealer/dashboard']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li><mat-icon>dashboard</mat-icon> <span>Dashboard</span></li>
+          </a>
+          <a [routerLink]="['/dealer/orders']" routerLinkActive="active">
+            <li><mat-icon>view_list</mat-icon><span>My Orders</span></li>
+          </a>
+          <a [routerLink]="['/dealer/cart']" routerLinkActive="active">
+            <li><mat-icon>inventory</mat-icon> <span>My Cart</span></li>
+          </a>
+          <a [routerLink]="['/dealer/profile']" routerLinkActive="active">
+            <li><mat-icon>settings</mat-icon><span>Setting</span></li>
+          </a>
+          <a (click)="logout()" routerLinkActive="active">
+            <li><mat-icon>logout</mat-icon><span>Logout</span></li>
+          </a>
+        </ul>
+      </div>
+    </div>
+    <div class="col mt-4">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>

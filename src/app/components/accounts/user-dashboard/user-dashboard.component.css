@@ -1,10 +1,10 @@
 
+
 .sidebar {
-  width: 100%;
-  min-height: 80vh;
   display: flex;
   justify-content: right;
-
+  min-height: 80vh;
+  padding: 0 10%;
 }
 .sidebar ul {
   width: 100%;
@@ -19,7 +19,7 @@
 .sidebar ul li {
   display: flex;
   align-items: center;
-  padding: 10px 55px 10px 10px;
+  padding: 10px 10px;
   margin: 15px 0px;
   border-radius: 5%;
   text-align: left;
@@ -43,18 +43,34 @@
   background-color: #f5faff;
   color: #2874f0;
 }
-.sidebar ul li a:hover {
-  /* background-color: #555; */
-}
 
-.content {
-  width: 78%;
-  height: 100%;
-}
+
+
 .active {
   background-color: #d8dfeb;
   color: #285192; 
   border-radius: 10%;
 }
+
+.content {
+  width: 100%;
+}
+
+
+/* 
+@media only screen and (min-width: 768px) {
+  .account-container {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .content {
+    width: 78%;
+  }
+
+  .sidebar {
+    width: 22%;
+  }
+} */
 
 

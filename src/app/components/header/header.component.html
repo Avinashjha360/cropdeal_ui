@@ -53,13 +53,13 @@
         <mat-toolbar class="toolbar">
             <mat-icon class="account-icon" color="primary">notifications</mat-icon>
         </mat-toolbar>
-        <mat-toolbar class="toolbar">
+        <mat-toolbar class="toolbar-3">
             <mat-menu #userMenu="matMenu">
-                <a [routerLink]="['/account']"><button mat-menu-item><mat-icon class="bar-icon m-1">dashboard</mat-icon>Dashboard</button></a>
+                <a [routerLink]="[this.getRole().toLocaleLowerCase(),'dashboard']"><button mat-menu-item><mat-icon class="bar-icon m-1">dashboard</mat-icon>Dashboard</button></a>
                 <button mat-menu-item><mat-icon class="bar-icon m-1">settings</mat-icon>Edit Profile</button>
                 <button mat-menu-item (click)="logout()"><mat-icon class="cart-icon m-1">logout</mat-icon>Logout</button>
             </mat-menu>
-            <mat-icon class="account-icon" [matMenuTriggerFor]="userMenu" color="primary">account_circle</mat-icon>
+           <span>{{getRole()}}</span> <mat-icon class="account-icon" [matMenuTriggerFor]="userMenu" color="primary">account_circle</mat-icon>
         </mat-toolbar>
     </div>
 </nav>

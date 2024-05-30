@@ -19,7 +19,7 @@ export class OrderSuccessComponent implements OnInit {
 
     ngOnInit(): void {
         const orderId = this.router.snapshot.params['id'];
-        this.orderService.getOrderByOrderId("6655b07112567c75ecccca89").subscribe((res: any) => {
+        this.orderService.getOrderByOrderId(orderId).subscribe((res: any) => {
             if (res) {
                 this.order = res;
             } else {

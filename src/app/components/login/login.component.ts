@@ -12,7 +12,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class LoginComponent {
 
-  constructor(private authService: AuthService, private router:Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   username = new FormControl('', [
     Validators.required,
@@ -33,11 +33,11 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe((res: any) => {
         this.loginForm.reset();
-        
-        this.authService.setRole(res.data.user.role);
-        this.authService.setUserId(res.data.user.id);
-        this.authService.setToken(res.data.token);    
-        this.router.navigateByUrl("/account");
+        this.authService.setToken(res.data.token);
+        if (res.data.user.role === 'DEALER')
+          this.router.navigateByUrl("/");
+        else
+          this.router.navigateByUrl(res.data.user.role.toLowerCase() + "/dashboard");
       }, (err) => {
         console.log("err while login user: ", err);
       });

@@ -97,11 +97,26 @@ a {
 }
 
 .toolbar {
-    width: 4%;
+    width: 3.3%;
     padding: 0;
     color: rgb(85, 85, 85);
     background-color: unset;
     cursor: pointer;
+    /* border: 1px solid red; */
+
+}
+.toolbar-3 {
+    width: 7%;
+    padding: 0;
+    color: rgb(85, 85, 85);
+    background-color: unset;
+    cursor: pointer;
+    /* border: 1px solid red; */
+
+}
+.toolbar-3 span{
+    font-size: 0.6em;
+    padding-right: 3px;
 }
 .navbar-brand{
     color:rgb(85, 85, 85);

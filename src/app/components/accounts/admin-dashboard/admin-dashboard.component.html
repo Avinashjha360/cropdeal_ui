@@ -1,22 +1,31 @@
-<div class="sidebar mt-4">
-  <ul class="pt-2">
-    <a [routerLink]="['/account']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-      <li><mat-icon>dashboard</mat-icon> <span>Dashboard</span></li>
-    </a>
-    <a [routerLink]="['/account/admin/users']" routerLinkActive="active">
-      <li><mat-icon>manage_accounts</mat-icon> <span>Manage Users</span></li>
-    </a>
-    <a [routerLink]="['/account/admin/products']"  routerLinkActive="active">
-      <li><mat-icon>inventory</mat-icon> <span>Manage Products</span></li>
-    </a>
-    <a [routerLink]="['/account/admin/orders']" routerLinkActive="active">
-      <li><mat-icon>view_list</mat-icon><span>Manage Orders</span></li>
-    </a>
-    <a [routerLink]="['/account/profile']" routerLinkActive="active">
-      <li><mat-icon>settings</mat-icon><span>Setting</span></li>
-    </a>
-    <a (click)="logout()" routerLinkActive="active">
-      <li><mat-icon>logout</mat-icon><span>Logout</span></li>
-    </a>
-  </ul>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3 col-md-3">
+      <div class="sidebar mt-5">
+        <ul class="pt-2">
+          <a [routerLink]="['/admin/dashboard']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <li><mat-icon>dashboard</mat-icon> <span>Dashboard</span></li>
+          </a>
+          <a [routerLink]="['/admin/users']" routerLinkActive="active">
+            <li><mat-icon>manage_accounts</mat-icon> <span>Manage Users</span></li>
+          </a>
+          <a [routerLink]="['/admin/products']" routerLinkActive="active">
+            <li><mat-icon>inventory</mat-icon> <span>Manage Products</span></li>
+          </a>
+          <a [routerLink]="['/admin/orders']" routerLinkActive="active">
+            <li><mat-icon>view_list</mat-icon><span>Manage Orders</span></li>
+          </a>
+          <a [routerLink]="['/admin/profile']" routerLinkActive="active">
+            <li><mat-icon>settings</mat-icon><span>Setting</span></li>
+          </a>
+          <a (click)="logout()" routerLinkActive="active">
+            <li><mat-icon>logout</mat-icon><span>Logout</span></li>
+          </a>
+        </ul>
+      </div>
+    </div>
+    <div class="col mt-4">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>

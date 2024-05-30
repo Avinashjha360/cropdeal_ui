@@ -17,7 +17,7 @@ import { RouterModule } from '@angular/router';
          
             @for (item of order.item.products; track $index) {
             <div class="order">
-            <img [src]="item.image" alt="Product Image" [height]="100">
+            <img src="{{item.image}}" alt="Product Image" [height]="100">
                 <div class="order-info">
                     <p><strong>{{item.name}}</strong></p>
                     <p><strong>Total Amount:</strong> {{item.price}}</p>
@@ -25,7 +25,7 @@ import { RouterModule } from '@angular/router';
                     <p><strong>Status:</strong> Pending</p>
                 </div>
                 <div class="actions">
-                    <button class="details-btn"  [routerLink]="['/account/dealer/orders/', order.orderId]">View Details</button>
+                    <button class="details-btn"  [routerLink]="['/dealer/orders/', order.orderId]">View Details</button>
                 </div>
             </div>
             }

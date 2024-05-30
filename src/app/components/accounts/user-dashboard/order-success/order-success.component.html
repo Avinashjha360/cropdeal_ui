@@ -4,8 +4,8 @@
         <h4>{{order.date.split("T")[0]+", "+order.date.split("T")[1].split(".")[0].substring(0,5)}}</h4>
         @for (item of order.item.products; track $index) {
             <div class="order">
-        <img [src]="item.image" alt="Product Image" [height]="100">
-            <div class="order-info">
+                <img mat-card-image [src]="item.image" alt="Image of {{ item.name }}" class="mx-3 mt-1" height="100px">
+                <div class="order-info">
                 <p><strong>{{item.name}}</strong></p>
                 <p><strong>Total Amount:</strong> {{item.price}}</p>
                 <p><strong>Quantity:</strong> {{item.quantity}}</p>

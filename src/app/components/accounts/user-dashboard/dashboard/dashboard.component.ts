@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../../Service/auth.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [MatIcon],
+  imports: [MatIcon, CommonModule],
   animations: [
     trigger('increaseCount', [
       transition(':increment', [
@@ -17,10 +19,10 @@ import { trigger, transition, style, animate } from '@angular/animations';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent implements OnInit{
+export class UserDashboardComponent implements OnInit{
   currentCount: number = 0;
 
-  constructor() { }
+  constructor(public authService:AuthService) { }
 
   ngOnInit(): void {
     this.increaseCount(1000);

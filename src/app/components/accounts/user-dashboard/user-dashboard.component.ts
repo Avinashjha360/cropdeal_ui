@@ -10,7 +10,7 @@ import { MatIcon } from '@angular/material/icon';
   templateUrl: './user-dashboard.component.html',
   styleUrl: './user-dashboard.component.css'
 })
-export class UserDashboardComponent {
+export class UserComponent {
   constructor(private route:Router, private authService:AuthService){}
 
   logout(){

@@ -86,7 +86,7 @@ export class CartComponent implements OnInit{
   placeOrder(transactionId:String, cartId:String){
     this.orderService.placeOrder(transactionId, cartId).subscribe((res:any)=>{
       this.ngZone.run(() => {
-        this.router.navigate(['/account/dealer/orders']);
+        this.router.navigate(['/dealer/orders']);
         this._snackBar.open("Order has been placed.", 'Close', { verticalPosition: 'top', duration:1500 });
       });
 

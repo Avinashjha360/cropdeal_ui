@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './farmer-dashboard.component.html',
   styleUrl: './farmer-dashboard.component.css'
 })
-export class FarmerDashboardComponent {
+export class FarmerComponent {
   constructor(private route:Router, private authService:AuthService){}
 
   logout(){

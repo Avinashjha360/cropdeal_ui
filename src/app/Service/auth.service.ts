@@ -15,34 +15,30 @@ export class AuthService {
     return this.http.post("http://localhost:8087/api/login", data);
   }
 
-  getUserInfo(userEmail: String) {
-    return this.http.get("http://localhost:8087/api/user/" + userEmail);
-  }
-
-
   registerUser(data: any) {
     return this.http.post("http://localhost:8087/api/register", data);
   }
 
-  public setUserId(userId: string) {
-    localStorage.setItem('userId', userId);
+  getUserByEmail(userEmail: String) {
+    return this.http.get("http://localhost:8087/api/user/" + userEmail);
   }
 
-  public getUserId(): string {
-    const userId = localStorage.getItem('userId');
-    if (userId)
-      return userId;
-    return "";
+  public getUserId(): any {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+      return null;
+    }    
+    const payload = JSON.parse(atob(token.split('.')[1]));    
+    return payload.USERID;
   }
 
-  public setRole(role: string) {
-    localStorage.setItem('role', role);
-  }
-  public getRole(): string {
-    const role = localStorage.getItem('role');
-    if (role)
-      return role;
-    return "";
+  public getRole(): any {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+      return null;
+    }    
+    const payload = JSON.parse(atob(token.split('.')[1]));    
+    return payload.ROLE;
   }
 
   public setToken(jwtToken: string) {
@@ -53,17 +49,6 @@ export class AuthService {
     return localStorage.getItem('jwtToken');
   }
 
-  public setCart(cart: CartObject) {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }
-
-  public getCart():CartObject | null{
-    const cart = localStorage.getItem('cart');
-    if(cart)
-      return JSON.parse(cart);
-
-    return null;
-  }
 
   public logout(): void {
     localStorage.removeItem('jwtToken');
@@ -75,6 +60,7 @@ export class AuthService {
   public isLoggedIn() {
     if (this.getRole() && this.getToken())
       return true;
+    
     return false;
   }
 }

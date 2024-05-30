@@ -10,8 +10,7 @@ import { log } from 'console';
 @Component({
   selector: 'app-slick-carousel',
   standalone: true,
-  imports: [SlickCarouselModule, MatCardModule,
-    MatButtonModule, RouterModule, CommonModule],
+  imports: [SlickCarouselModule, MatCardModule, MatButtonModule, RouterModule, CommonModule],
   templateUrl: './slick-carousel.component.html',
   styleUrl: './slick-carousel.component.css'
 })
@@ -21,9 +20,7 @@ export class SlickCarouselComponent {
   @Input() products: Product[] = [];
   fruit: Product[] = [];
   vegetable: Product[] = [];
-  slides = [
-    { img: "http://placehold.it/350x150/000000" },
-  ];
+
   slideConfig = {
     "slidesToShow": 6,
     "slidesToScroll": 6,
@@ -31,7 +28,31 @@ export class SlickCarouselComponent {
     "autoplaySpeed": 3000,
     "pauseOnHover": true,
     "infinite": true,
-    "arrows": false
+    "arrows": false,
+    responsive: [
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+        
+      },
+    ],
   };
 
   slideConfig2 = {
@@ -67,20 +88,14 @@ export class SlickCarouselComponent {
 
   }
 
-  addSlide() {
-    this.slides.push({ img: "http://placehold.it/350x150/777777" })
-  }
-
-  removeSlide() {
-    this.slides.length = this.slides.length - 1;
-  }
-
+  
   slickInit(e: any) {
     console.log('slick initialized');
   }
 
   breakpoint(e: any) {
     console.log('breakpoint');
+
   }
 
   afterChange(e: any) {
