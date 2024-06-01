@@ -9,12 +9,13 @@ import { AuthService } from '../../../../Service/auth.service';
 import { OrderService } from '../../../../Service/order.service';
 import { CartService } from '../../../../Service/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CheckoutComponent } from '../checkout/checkout.component';
 
 declare var Razorpay: any;
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [RouterModule, MatIconModule, MatBadgeModule],
+  imports: [RouterModule, MatIconModule, MatBadgeModule, CheckoutComponent],
   templateUrl: `./cart.component.html`,
   styleUrl: './cart.component.css'
 })

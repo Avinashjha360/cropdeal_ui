@@ -11,11 +11,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatIcon } from '@angular/material/icon';
 import { AuthService } from '../../../../Service/auth.service';
 import { ProductService } from '../../../../Service/product.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [MatIcon, FormsModule, MatTable, MatTableModule, MatButtonModule, MatPaginator, MatPaginatorModule, MatFormField, MatLabel, MatInputModule],
+  imports: [CommonModule, MatIcon, FormsModule, MatTable, MatTableModule, MatButtonModule, MatPaginator, MatPaginatorModule, MatFormField, MatLabel, MatInputModule],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
@@ -53,8 +54,12 @@ export class ProductListComponent implements OnInit {
     }
   }
 
-  edit(product: any){
+  editProduct(product: any){
     this.openPopup("Edit Product", product);
+  }
+
+  deleteProduct(product:any){
+    this.openPopup("Delete Product", product);
   }
 
   openPopup(title: string, row: any) {

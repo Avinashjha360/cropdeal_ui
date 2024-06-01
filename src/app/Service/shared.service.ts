@@ -13,14 +13,6 @@ export class SharedService {
 
   constructor() { }
 
-  setAlert(status:boolean, message:string){
-    this.alert.status = status,
-    this.alert.message = message
-  }
-  getAlert(){
-    return this.alert;
-  }
-
   getCounter(){
     return this.count;
   }

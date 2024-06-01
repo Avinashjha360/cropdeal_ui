@@ -34,10 +34,11 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value).subscribe((res: any) => {
         this.loginForm.reset();
         this.authService.setToken(res.data.token);
-        if (res.data.user.role === 'DEALER')
+        
+        if (this.authService.getRole() === 'DEALER')
           this.router.navigateByUrl("/");
         else
-          this.router.navigateByUrl(res.data.user.role.toLowerCase() + "/dashboard");
+          this.router.navigateByUrl(this.authService.getRole().toLowerCase() + "/dashboard");
       }, (err) => {
         console.log("err while login user: ", err);
       });

@@ -33,6 +33,10 @@ export class ProductService {
     return this.http.post(this.PATH_OF_API+"product/addProduct",data);
   }
 
+  deletProductById(productId:string){    
+    return this.http.delete(this.PATH_OF_API+"product/delete/"+productId);
+  }
+
   updateProduct(data:any, productId:string){
     return this.http.put(this.PATH_OF_API+"product/update/"+productId, data);
   }

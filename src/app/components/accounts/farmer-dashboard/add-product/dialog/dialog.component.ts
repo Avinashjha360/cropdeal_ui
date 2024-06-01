@@ -89,7 +89,11 @@ export class DialogComponent implements OnInit {
   }
 
   deleteProduct(){
-    
+    this.productService.deletProductById(this.editData.data.productId).subscribe((res:any)=>{
+      this.ref.close(null);
+      this._snackBar.open("Product has been deleted", 'Close', { verticalPosition: 'top', duration:1500 });
+
+    });
   }
 }
 

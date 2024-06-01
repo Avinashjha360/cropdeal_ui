@@ -1,52 +1,73 @@
-<form [formGroup]="productForm" >
-    <h1 mat-dialog-title class="m-3">{{editData.title}}</h1>
-    <div mat-dialog-content>
-        <mat-form-field appearance="outline">
-            <mat-label>Product Name</mat-label>
-            <input matInput formControlName="name" required>
-        </mat-form-field>
 
-        <mat-form-field appearance="outline">
-            <mat-label>Select Category</mat-label>
-            <mat-select formControlName="category" required>
-                <mat-option value="Fruit">Fruit</mat-option>
-                <mat-option value="Vegetable">Vegetable</mat-option>
-            </mat-select>
-        </mat-form-field>
+    <div class="card" *ngIf="editData.title === 'Delete Product'">
+        <div  class="card-img-top" >
+            <img [src]="editData.data.image" alt="{{ editData.data.name }}" height="130">
+        </div>
+        <div class="card-body">
+        <h5 class="card-title">{{ editData.data.name }}</h5>
+        <p class="card-text">Category: {{ editData.data.category }}</p>
+        <p class="card-text">Location: {{ editData.data.location }}</p>
+        <p class="card-text">Price: &#8377;{{ editData.data.price }}</p>
+        <p class="card-text">Quantity: {{ editData.data.quantity }}</p>
+        <p class="card-text">Description: {{ editData.data.description }}</p>
+        <p class="card-text" *ngIf="editData.data.available; else notAvailable">Availability: <span class="text-success">Available</span></p>
+        <ng-template #notAvailable>Availability: <span class="text-danger">Not Available</span></ng-template>
+        </div>
+    </div>
+    
 
-        <mat-form-field appearance="outline">
-            <mat-label>Product Price</mat-label>
-            <input matInput formControlName="price" required>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-            <mat-label>Quantity</mat-label>
-            <input matInput formControlName="quantity" required>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-            <mat-label>Image Link</mat-label>
-            <input matInput formControlName="image">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-            <mat-label>Location</mat-label>
-            <input matInput formControlName="location">
-        </mat-form-field>
-
-        <div class="text-area">
+    <form [formGroup]="productForm" class="mx-2">
+        <h1 mat-dialog-title class="m-3" *ngIf="editData.title != 'Delete Product'">{{editData.title}}</h1>
+        <div mat-dialog-content *ngIf="editData.title != 'Delete Product'">
             <mat-form-field appearance="outline">
-                <mat-label>Description</mat-label>
-                <textarea matInput formControlName="description"></textarea>
+                <mat-label>Product Name</mat-label>
+                <input matInput formControlName="name" required>
             </mat-form-field>
-        </div>
 
-        <div>
-            <mat-checkbox formControlName="available">Is Active</mat-checkbox>
+            <mat-form-field appearance="outline">
+                <mat-label>Select Category</mat-label>
+                <mat-select formControlName="category" required>
+                    <mat-option value="Fruit">Fruit</mat-option>
+                    <mat-option value="Vegetable">Vegetable</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Product Price</mat-label>
+                <input matInput formControlName="price" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Quantity</mat-label>
+                <input matInput formControlName="quantity" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Image Link</mat-label>
+                <input matInput formControlName="image">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Location</mat-label>
+                <input matInput formControlName="location">
+            </mat-form-field>
+
+            <div class="text-area">
+                <mat-form-field appearance="outline">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-checkbox formControlName="available">Is Active</mat-checkbox>
+            </div>
+
+
         </div>
-    </div>
-    <div mat-dialog-actions [align]="'end'" class="my-2">
-        <button mat-raised-button color="warn" mat-dialog-close (click)="this.ref.close(null)">Close</button>
-        <button mat-raised-button color="primary" class="mx-3" (click)="saveProduct()">{{actionBtn}}</button>
-    </div>
-</form>
+        <div mat-dialog-actions [align]="'end'" class="my-2">
+            <button mat-raised-button color="warn" mat-dialog-close (click)="this.ref.close(null)">Close</button>
+            <button *ngIf="editData.title != 'Delete Product'" mat-raised-button color="primary" class="mx-3" (click)="saveProduct()">{{actionBtn}}</button>
+            <button *ngIf="editData.title === 'Delete Product'" mat-raised-button color="primary" class="mx-3" (click)="deleteProduct()">Delete</button>
+        </div>
+    </form>

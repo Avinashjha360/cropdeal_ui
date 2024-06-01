@@ -11,28 +11,30 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../../../Service/auth.service';
 import { ProductService } from '../../../../../Service/product.service';
+import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dialog',
   standalone: true,
-  imports: [ MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule],
+  imports: [CommonModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule],
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.css'
 })
 export class DialogComponent implements OnInit {
+  inputData: any;
+  inputTitle: string = '';
   actionBtn: string = "Save";
-  productForm !: FormGroup;
-
   constructor(
     @Inject(MAT_DIALOG_DATA) public editData: any,
     public ref: MatDialogRef<DialogComponent>,
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private productService: ProductService,
-    private _snackBar: MatSnackBar
+    private _snackBar:MatSnackBar
   ) { }
 
+  productForm !: FormGroup;
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
@@ -48,33 +50,54 @@ export class DialogComponent implements OnInit {
     });
     if (this.editData.data) {
       this.actionBtn = "Update";
+      this.productForm.controls['userId'].setValue(this.editData.data.userId);
       this.productForm.controls['name'].setValue(this.editData.data.name);
       this.productForm.controls['category'].setValue(this.editData.data.category);
       this.productForm.controls['location'].setValue(this.editData.data.location);
       this.productForm.controls['price'].setValue(this.editData.data.price);
       this.productForm.controls['quantity'].setValue(this.editData.data.quantity);
-      this.productForm.controls['available'].setValue(this.editData.data.available);
       this.productForm.controls['image'].setValue(this.editData.data.image);
+      this.productForm.controls['available'].setValue(this.editData.data.available);
       this.productForm.controls['description'].setValue(this.editData.data.description);
-      this.productForm.controls['userId'].setValue(this.editData.data.userId);
     }
   }
 
   saveProduct() {
     if (this.productForm.valid) {
+      if (!this.editData.data) {
+        this.productService.addProduct(this.productForm.value).subscribe((res: any) => {
+          this.productForm.reset();
+          this.ref.close(res.data);
+          this._snackBar.open("Product has been added", 'Close', { verticalPosition: 'top', duration:1500 });
+        })
+      }
+      else {
+        this.updateProduct();
 
-      console.log(this.productForm.value);
-
-      this.productService.updateProduct(this.productForm.value, this.editData.data.productId).subscribe((res: any) => {
-        this.ref.close(res.data);
-        this._snackBar.open("Product has been updated", 'Close', { verticalPosition: 'top', duration: 1500 });
-
-      });
+      }
     } else {
       console.log("Invalid Form");
     }
   }
 
+
+  updateProduct() {
+    console.log(this.productForm.value);
+    
+    this.productService.updateProduct(this.productForm.value, this.editData.data.productId).subscribe((res:any)=>{
+      this.ref.close(res.data);
+      this._snackBar.open("Product Info has been updated", 'Close', { verticalPosition: 'top', duration:1500 });
+
+    });
+  }
+
+  deleteProduct(){
+    this.productService.deletProductById(this.editData.data.productId).subscribe((res:any)=>{
+      this.ref.close(null);
+      this._snackBar.open("Product has been deleted", 'Close', { verticalPosition: 'top', duration:1500 });
+
+    });
+  }
 }
 
 

@@ -22,6 +22,7 @@ import { UserComponent } from './components/accounts/user-dashboard/user-dashboa
 import { UserDashboardComponent } from './components/accounts/user-dashboard/dashboard/dashboard.component';
 import { adminGuard } from './guards/admin.guard';
 import { farmerGuard } from './guards/farmer.guard';
+import { CheckoutComponent } from './components/accounts/user-dashboard/checkout/checkout.component';
 
 export const routes: Routes = [
     {
@@ -53,6 +54,11 @@ export const routes: Routes = [
         path: 'cart',
         component: CartComponent,
         title: 'Cart details',
+    },
+    {
+        path: 'checkout',
+        component: CheckoutComponent,
+        title: 'Checkout Page'
     },
 
     {
@@ -139,6 +145,7 @@ export const routes: Routes = [
                 component: OrderSuccessComponent,
                 title: 'Order details'
             },
+
         ]
     },
     {
