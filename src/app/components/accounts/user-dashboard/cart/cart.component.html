@@ -24,7 +24,7 @@
     </tbody>
   </table>
   <p class="item-price">Total Price: {{"&#8377;"+cart.totalAmount}}</p>
-  <button class="btn btn-primary" (click)="createTransaction(cart.id, cart.totalAmount.toString())">Checkout</button>
+  <button [routerLink]="['/checkout']" class="btn btn-primary">Checkout</button>
   }@else {
   <div class="empty-cart">
     <h2>Your cart is empty!</h2>

@@ -1,30 +1,40 @@
-.form-group{
+.form-group {
     margin: 15px 0px;
 }
-.container {
-    max-width: 900px;
-    min-height: 400px;
-    margin: auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+.container-fluid {
+    max-width: 90%;
+    margin-top: 2%;
+    margin-bottom: 3%;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.order-list h4{
-    color: #2874f0;
+.order-summary {
+    background-color: beige;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+.order-list{
+    min-height: 240px;
 }
 .order {
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
     border-radius: 8px;
+
 }
 
 .order-info {
     flex: 1;
     padding-left: 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+}
+
+.order-info p {
+    margin: 0;
 }
 
 .actions {
@@ -44,4 +54,10 @@
 
 .details-btn:hover {
     background-color: #45a049;
+}
+
+.totalAmount {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ProductService } from '../../Service/product.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Product, Rating } from '../../models/products';
@@ -56,6 +56,8 @@ import { CartService } from '../../Service/cart.service';
  <section>
     <app-ratings [ratings]="rating" [product]="products"></app-ratings>
 </section>
+
+
 `,
   styleUrl: './details.component.css'
 })
@@ -68,19 +70,27 @@ export class DetailsComponent implements OnInit {
     private _router: Router,
     private authService: AuthService,
     private productService: ProductService,
-    private cartService:CartService,
+    private cartService: CartService,
     public sharedService: SharedService,
     private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
     const productId = this.route.snapshot.params['id'];
-    
+
     this.productService.getProductById(productId).then(product => {
       this.products = product;
       this.rating = product.ratings || [];
     });
+
+    this._router.events.subscribe((event) => { 
+      if (!(event instanceof NavigationEnd)) { 
+          return; 
+      } 
+      window.scrollTo(0, 0) 
+  }); 
   }
+
 
   addToCart(input: string): void {
     const productId = this.products?.productId || '';
@@ -91,12 +101,12 @@ export class DetailsComponent implements OnInit {
         if (res) {
           this.sharedService.setCount(res?.products.length);
           if (input == "buy-now") {
-            this._router.navigate(['cart'])
+            this._router.navigate(['checkout'])
           }
         }
       });
     } else {
-      this._snackBar.open("Please Log In to Add Products to Your Cart.", 'Close', { verticalPosition: 'top',duration: 2000 });
+      this._snackBar.open("Please Log In to Add Products to Your Cart.", 'Close', { verticalPosition: 'top', duration: 2000 });
     }
   }
 }

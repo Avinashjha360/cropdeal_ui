@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../Service/auth.service';
 import { MatIcon } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { LogoutDialogComponent } from '../../logoutDialog/dialog.component';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -11,10 +13,9 @@ import { MatIcon } from '@angular/material/icon';
   styleUrl: './user-dashboard.component.css'
 })
 export class UserComponent {
-  constructor(private route:Router, private authService:AuthService){}
+  constructor(private dialog: MatDialog){}
 
   logout(){
-    this.authService.logout();
-    this.route.navigateByUrl("/");
+    this.dialog.open(LogoutDialogComponent, {});
   }
 }

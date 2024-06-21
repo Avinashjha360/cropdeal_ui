@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuTrigger } from '@angular/material/menu';
@@ -9,8 +9,14 @@ import { SharedService } from '../../Service/shared.service';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../Service/cart.service';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatButtonModule} from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+import { LogoutDialogComponent } from '../logoutDialog/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+
+declare var webkitSpeechRecognition: new () => any;
+
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -23,20 +29,32 @@ import {MatButtonModule} from '@angular/material/button';
     MatBadgeModule,
     MatMenuModule,
     MatDividerModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule
   ],
   templateUrl: 'header.component.html',
   styleUrl: './header.component.css'
 })
 
 export class HeaderComponent implements OnInit {
+
+  toggle: boolean = false;
+  searchText = new FormControl('', [
+    Validators.required,
+  ])
+
+  searchForm = new FormGroup({
+    searchText: this.searchText,
+  })
+
   constructor(
-    private route: Router,
     private authService: AuthService,
     private cartService: CartService,
-    public sharedService: SharedService
+    public sharedService: SharedService,
+    private dialog: MatDialog,
+    private route: Router,
+    private ngZone: NgZone,
   ) { }
-
   ngOnInit(): void {
     const userId = this.authService.getUserId();
 
@@ -49,16 +67,72 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  search() {
+    if(this.searchForm.valid){
+      this.route.navigateByUrl('/search', { state: { searchText:"this.searchForm.value" } });
+    }
+  }
+
   public isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
 
   public logout() {
-    this.authService.logout();
-    this.route.navigateByUrl("/");
+    this.dialog.open(LogoutDialogComponent, {});
   }
+
+  show() {
+    this.toggle = true;
+  }
+  close() {
+    this.toggle = false;
+  }
+
 
   public getRole(): string {
     return this.authService.getRole();
   }
+
+  results: any;
+
+  startListening() {
+    // let voiceHandler = this.hiddenSearchHandler?.nativeElement;
+    if ('webkitSpeechRecognition' in window) {
+      const vSearch = new webkitSpeechRecognition();
+      vSearch.continuous = false;
+      vSearch.interimresults = false;
+      vSearch.lang = 'en-US';
+      vSearch.start();
+      vSearch.onresult = (e: any) => {
+        this.results = e.results[0][0].transcript;
+        this.getResult();
+        vSearch.stop();
+      };
+    } else {
+      alert('Your browser does not support voice recognition!');
+    }
+  }
+
+  value = [];
+  routes = ["login", "register", "registersuccess", "cart", "dashboard"];
+  getResult() {
+    this.value = this.results.split(" ");
+
+    for (let val of this.value) {
+      if (this.routes.includes(val)) {
+        this.ngZone.run(() => {
+
+          if (this.authService.getRole() == 'ADMIN') {
+            this.route.navigateByUrl("/" + val);
+          } else {
+            this.route.navigateByUrl("/" + val);
+          }
+        })
+        console.log(val + " exists in routes array");
+      } else {
+        console.log(val + " does not exist in routes array");
+      }
+    }
+  }
+
 }

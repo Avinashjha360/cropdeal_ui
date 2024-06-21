@@ -23,6 +23,7 @@ import { UserDashboardComponent } from './components/accounts/user-dashboard/das
 import { adminGuard } from './guards/admin.guard';
 import { farmerGuard } from './guards/farmer.guard';
 import { CheckoutComponent } from './components/accounts/user-dashboard/checkout/checkout.component';
+import { SearchComponent } from './components/search/search.component';
 
 export const routes: Routes = [
     {
@@ -39,6 +40,11 @@ export const routes: Routes = [
         path: 'register',
         component: RegisterComponent,
         title: 'Register'
+    },
+    {
+        path: 'search',
+        component: SearchComponent,
+        title: 'Search'
     },
     {
         path: 'registersuccess',

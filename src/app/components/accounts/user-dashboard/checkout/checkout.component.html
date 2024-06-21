@@ -1,57 +1,61 @@
-<div class="container mt-5">
-  <div class="row">
-      <div class="col-md-6">
-          <h2>Checkout</h2>
-          <form>
-              <div class="form-group">
-                  <label for="fullName">Full Name:</label>
-                  <input type="text" class="form-control" id="fullName" placeholder="Enter full name">
-              </div>
-              <div class="form-group">
-                  <label for="email">Email address:</label>
-                  <input type="email" class="form-control" id="email" placeholder="Enter email">
-              </div>
-              <div class="form-group">
-                  <label for="address">Address:</label>
-                  <input type="text" class="form-control" id="address" placeholder="Enter address">
-              </div>
-              <div class="form-group">
-                  <label for="city">City:</label>
-                  <input type="text" class="form-control" id="city" placeholder="Enter city">
-              </div>
-              <div class="form-group">
-                  <label for="zipcode">Zipcode:</label>
-                  <input type="text" class="form-control" id="zipcode" placeholder="Enter zipcode">
-              </div>
-              <button type="submit" class="btn btn-primary my-2">Submit</button>
-          </form>
-      </div>
-      <div class="col-md-6">
-         
-            <h3>Order Summary</h3>
-            @for (item of cart.products; track $index) {
-            <div class="order-list">
-                <div class="order">
-                <img src="{{item.image}}" alt="Product Image" [height]="70" [width]="70">
-                    <div class="order-info">
-                        <p><strong>{{item.name}}</strong></p>
-                        <p>Category: {{item.category}}</p>
-                        <p>Quantity: {{item.quantity}}</p>
-                    </div>
-                    <div class="actions">
-                        <span >$108</span>
-                    </div>
-                </div>
-            </div>
-        }
-        <hr>
+<div class="container-fluid">
+    <form #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm)">
         <div class="row">
-            <h3>Total</h3>
-          </div>
-        
-        
-      </div>
-      
-  </div>
+            <div class="col-md-7 px-5 py-3">
+                <h2>Checkout</h2>
 
+                <div class="form-group">
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" class="form-control" name="fullName" placeholder="Enter full name" ngModel
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" class="form-control" name="email" placeholder="Enter email" ngModel required />
+                </div>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" class="form-control" name="address" placeholder="Enter address" required ngModel>
+                </div>
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text" class="form-control" name="city" placeholder="Enter city" required ngModel>
+                </div>
+                <div class="form-group">
+                    <label for="zipcode">Zipcode:</label>
+                    <input type="text" class="form-control" name="zipcode" placeholder="Enter zipcode" required ngModel>
+                </div>
+
+            </div>
+            <div class="col-md-5 order-summary py-4">
+                <h3>Order Summary</h3>
+                <div class="order-list">
+                    @for (item of cart.products; track $index) {
+                    <div class="order">
+                        <img src="{{item.image}}" alt="Product Image" [height]="70" [width]="70">
+                        <div class="order-info">
+                            <p><strong>{{item.name}}</strong></p>
+                            <p>Category: {{item.category}}</p>
+                            <p>Quantity: {{item.quantity}}</p>
+                        </div>
+                        <div class="actions">
+                            <span> &#8377;{{item.price*item.quantity}}</span>
+                        </div>
+                    </div>
+                    }
+                    <hr />
+                </div>
+                    <div class="px-1 totalAmount">
+                        <h4>Total</h4>
+                        <p> &#8377;{{cart.totalAmount}}</p>
+                    </div>
+                    <div class="row px-4 py-1">
+                        <button class="btn btn-primary " type="submit">Pay Now</button>
+                    </div>
+
+
+            </div>
+
+        </div>
+    </form>
 </div>

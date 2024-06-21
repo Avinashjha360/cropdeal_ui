@@ -1,0 +1,7 @@
+<div class="order" mat-dialog-content>
+    <p>Are you sure you want to sign out?</p>
+</div>
+<div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button mat-dialog-close (click)="this.ref.close(null)">No</button>
+    <button mat-raised-button mat-dialog-close (click)="this.logout()">Yes</button>
+</div>

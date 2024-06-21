@@ -17,10 +17,11 @@ export class OrderService {
     return this.http.delete(this.PATH_OF_API+"order/"+orderId);
   }
 
-  placeOrder(transactionId: String, cartId: String){
+  placeOrder(transactionId: String, cartId: String, address:any){
     return this.http.post(this.PATH_OF_API+"order/createOrder", {
       "transactionId": transactionId,
-      "cartId": cartId
+      "cartId": cartId,
+      "address":address
     });
   }
   

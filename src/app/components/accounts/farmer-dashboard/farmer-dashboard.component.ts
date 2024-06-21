@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../../Service/auth.service';
+import {RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { LogoutDialogComponent } from '../../logoutDialog/dialog.component';
 
 @Component({
   selector: 'app-farmer-dashboard',
@@ -11,10 +12,9 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './farmer-dashboard.component.css'
 })
 export class FarmerComponent {
-  constructor(private route:Router, private authService:AuthService){}
+  constructor(private dialog: MatDialog){}
 
   logout(){
-    this.authService.logout();
-    this.route.navigateByUrl("/");
+    this.dialog.open(LogoutDialogComponent, {});
   }
 }

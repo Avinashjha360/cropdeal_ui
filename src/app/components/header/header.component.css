@@ -1,61 +1,76 @@
 .top-nav {
-    background-color: #e7e7e7; /* Background color */
-    color: #1f1f1f; /* Text color */
-    padding: 15px 0; /* Vertical padding */
+    background-color: rgb(122, 106, 216);
+    color: white;
+    padding: 17px 0;
 }
 
- .list-inline-item i {
-    font-size: 15px; /* Adjust size of social icons */
+.list-inline-item i {
+    font-size: 15px;
 }
 
 .login-btn {
-    background-color: #fff; 
-    color: #333; 
-    padding: 5px 15px; 
-    border: none; /* Remove border */
-    border-radius: 5px; /* Add border radius */
-    text-decoration: none; /* Remove underline */
-    font-weight: bold; /* Bold font */
+    background-color: #fff;
+    color: #333;
+    padding: 5px 15px;
+    border: none;
+    /* Remove border */
+    border-radius: 5px;
+    /* Add border radius */
+    text-decoration: none;
+    /* Remove underline */
+    font-weight: bold;
+    /* Bold font */
 }
 
-.top-nav li{
+.top-nav li {
     display: inline;
     margin: 0 10px;
 }
 
-.top-nav .right{
+.top-nav .right {
     display: flex;
     justify-content: right;
 }
+
+
 /* Set up default styles */
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: var(--content-padding, 10px);
-    background-color: #ffffff;
+    background-color: rgb(122, 106, 216);
     border-bottom: 1px solid #141414;
 }
 
 .brand-name {
     margin-right: auto;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: white;
+
 }
-
-
 
 .search-container {
     position: relative;
     display: inline-block;
+   
 }
 
 .search-input {
-    padding: 10px 30px 10px 10px;
+    padding: 10px 20px 10px 10px;
     /* Adjust padding as needed */
-    border: 1px solid #ccc;
-    border-radius: 5px;
     font-size: 16px;
     width: 300px;
+    background-color: unset;
     /* Adjust width as needed */
+    border: unset;
+    border-bottom: 1px solid white;
+    color: white;
+}
+.search-input::placeholder{
+    color: white;
 }
 
 .search-button {
@@ -66,12 +81,13 @@
     border: none;
     cursor: pointer;
     padding: 10px;
+    color: white;
 }
 
 
 
 .search-button:hover i {
-    color: #333;
+    color: #ffffff;
 
 }
 
@@ -90,7 +106,7 @@ a {
     text-decoration: none;
 }
 
-.navbar{
+.navbar {
     background-color: #ffffff;
     border-bottom: 2px solid #3f51b5;
     padding: 0 1%;
@@ -105,6 +121,7 @@ a {
     /* border: 1px solid red; */
 
 }
+
 .toolbar-3 {
     width: 7%;
     padding: 0;
@@ -114,39 +131,79 @@ a {
     /* border: 1px solid red; */
 
 }
-.toolbar-3 span{
+
+.toolbar-3 span {
     font-size: 0.6em;
     padding-right: 3px;
 }
-.navbar-brand{
-    color:rgb(85, 85, 85);
+
+.navbar-brand {
+    color: rgb(85, 85, 85);
     font-family: Roboto, Helvetica, Arial, sans-serif;
     line-height: 30px;
     display: flex;
     align-items: center;
 }
 
-.vert{
-    height: 30px;
-    width: 30px;
-    font-size: 30px;
-    cursor: pointer;
+
+.mobile {
+    top: 0;
+    position: fixed;
+    background-color: rgb(245, 245, 220);
+    color: rgb(2, 2, 2);
+    width: 250px;
+    height: 100vh;
+    transition: transform 0.4s ease-in-out;
+    /* Add smooth transition */
+    z-index: 2;
+    border-top-right-radius: 5%;
 }
 
-.card{
+
+.menu {
+    padding: 20px;
+}
+
+.close {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10% 0%;
-}
-.fixed-img {
-    height: 100px; /* Set your desired fixed height */
-    width: 100px;
-    object-fit: cover; /* Ensure the image covers the entire space */
-    object-position: center; /* Center the image within its container */
+    justify-content: right;
+    padding: 0;
 }
 
-.card-body {
-    padding: 1rem; /* Add padding to the card body */
+.menu-item {
+    display: block;
+    color: hsl(0, 0%, 0%);
+    /* Text color for menu items */
+    text-decoration: none;
+    padding: 10px 10px;
+    margin: 4% 0;
+}
+
+.menu-item.active {
+    background-color: rgb(177, 177, 177);
+    border-radius: 50px;
+}
+
+.menu-item:hover {
+    background-color: rgb(177, 177, 177);
+    border-radius: 50px;
+}
+
+.mobile-menu-button {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .mobile-menu-button {
+        display: inline;
+    }
+
+    .right {
+        display: none;
+    }
+
+    .top-nav .row {
+        display: none;
+    }
 }

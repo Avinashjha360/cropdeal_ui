@@ -52,8 +52,6 @@ export class AuthService {
 
   public logout(): void {
     localStorage.removeItem('jwtToken');
-    localStorage.removeItem('role');
-    localStorage.removeItem('userId');
     this.sharedService.setCount(0);
   }
 

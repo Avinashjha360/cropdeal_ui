@@ -1,21 +1,18 @@
-import { Component, OnInit, NgZone} from '@angular/core';
-import { ProductService } from '../../../../Service/product.service';
+import { Component, OnInit} from '@angular/core';
 import { CartObject } from '../../../../models/cart';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { SharedService } from '../../../../Service/shared.service';
 import { AuthService } from '../../../../Service/auth.service';
-import { OrderService } from '../../../../Service/order.service';
 import { CartService } from '../../../../Service/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CheckoutComponent } from '../checkout/checkout.component';
 
 declare var Razorpay: any;
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [RouterModule, MatIconModule, MatBadgeModule, CheckoutComponent],
+  imports: [RouterModule, MatIconModule, MatBadgeModule],
   templateUrl: `./cart.component.html`,
   styleUrl: './cart.component.css'
 })
@@ -23,13 +20,10 @@ export class CartComponent implements OnInit{
   cart: CartObject = new CartObject();
 
   constructor(
-    private router:Router, 
-    private orderService:OrderService, 
     private authService:AuthService, 
     protected cartService:CartService,
     public sharedService:SharedService,
     private _snackBar:MatSnackBar,
-    private ngZone: NgZone
   ) {  }
 
   ngOnInit(): void {
@@ -44,60 +38,6 @@ export class CartComponent implements OnInit{
     })
   }
   }
-
-  createTransaction(cartId:string, totalAmount:string){
-    
-   
-    this.orderService.createTransaction(totalAmount).subscribe(res=>{
-      this.openTransactionModal(res, cartId);
-    })
-
-    // this.placeOrder("198298", cartId);
-  }
-
-  openTransactionModal(response:any, cartId:string){    
-    var options = {
-      order_id: response.orderId,
-      key: response.key,
-      currency:response.currency,
-      name:'Avinash Jha',
-      description: "Payment of Farmer's Shop",
-      image: '',
-      handler: (response:any)=>{
-        this.placeOrder(response.razorpay_order_id, cartId);
-      },
-      prefill:{
-        name:'Aniket',
-        email:'aniket@gmail.com',
-        contact:'8987331438'
-      },
-      notes:{
-        address:'Online shoping'
-      },
-      theme:{
-        color:"green"
-      }
-    };
-    var  razorPayObject = new Razorpay(options);
-    razorPayObject.open();
-  }
-
-
-
-  placeOrder(transactionId:String, cartId:String){
-    this.orderService.placeOrder(transactionId, cartId).subscribe((res:any)=>{
-      this.ngZone.run(() => {
-        this.router.navigate(['/dealer/orders']);
-        this._snackBar.open("Order has been placed.", 'Close', { verticalPosition: 'top', duration:1500 });
-      });
-
-      const userId = this.authService.getUserId();
-      this.deleteUserCart(userId);
-    },(err)=>{
-      console.log(err);
-    })
-  }
-
 
   removeProductFromCart(productId: String) {
     const userId = this.authService.getUserId();
@@ -120,11 +60,5 @@ export class CartComponent implements OnInit{
     })
   }
 
-  deleteUserCart(userId:string){
-    this.cartService.deleteUserCart(userId).subscribe((res:any)=>{
-      this.sharedService.setCount(0);
-      this.cart.products=[];
-      console.log(res);
-    });
-  }
+
 }
