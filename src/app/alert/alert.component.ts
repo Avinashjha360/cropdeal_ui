@@ -19,6 +19,5 @@ export class AlertComponent {
 @Input() message!:String;
 constructor(private sharedService: SharedService){}
 closeAlert(){
-  this.sharedService.setAlert(false, "");
 }
 }
