@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/331cbc05-c62b-4a61-888f-ef39b4b5c25e/resourceGroups/compute-rg/providers/Microsoft.Web/sites/cropdeal",
+    "appService.deploySubpath": "dist"
+}

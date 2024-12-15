@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { CartObject } from '../models/cart';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' // This makes the service available application-wide
 })
 export class CartService {
 

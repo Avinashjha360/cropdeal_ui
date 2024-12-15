@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' // This makes the service available application-wide
 })
 export class ProductService {
 
@@ -27,6 +27,10 @@ export class ProductService {
 
   getProductsByUserId(userId: String){
     return this.http.get<any[]>(this.PATH_OF_API+"product/user/"+userId);
+  }
+
+  getProductsByName(name: string){
+    return this.http.get<any[]>(this.PATH_OF_API+"product/search/"+name);
   }
 
   addProduct(data:any){

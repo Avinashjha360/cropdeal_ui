@@ -8,25 +8,20 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [RouterModule, CommonModule],
   template: `
-<footer class="footer">
-  <div class="footer-content">
-    <div class="farmer-section">
-      <h3>For Farmers</h3>
-      <p>Join our community and start selling your products to dealers.</p>
-      <a [routerLink]="['/register']" class="btn" *ngIf="!authService.isLoggedIn()">Sign Up</a>
+  
+  <!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+    <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+    <div class="w3-xlarge w3-section">
+      <i class="fa fa-facebook-official w3-hover-opacity mx-2"></i>
+      <i class="fa fa-instagram w3-hover-opacity mx-2"></i>
+      <i class="fa fa-snapchat w3-hover-opacity mx-2"></i>
+      <i class="fa fa-pinterest-p w3-hover-opacity mx-2"></i>
+      <i class="fa fa-twitter w3-hover-opacity mx-2"></i>
+      <i class="fa fa-linkedin w3-hover-opacity mx-2"></i>
     </div>
-    <div class="dealer-section">
-      <h3>For Dealers</h3>
-      <p>Explore a wide range of agricultural products from local farmers.</p>
-      <a [routerLink]="['/register']" class="btn" *ngIf="!authService.isLoggedIn()">Sign Up</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>&copy; 2024 YourFarmersMarket. All rights reserved.</p>
-  </div>
-</footer>
-
-
+    <p>Powered by <a href="https://cropdeal.com" title="W3.CSS" target="_blank" class="w3-hover-text-green">cropdeal.com</a></p>
+  </footer>
   `,
   styleUrl: './footer.component.css'
 })

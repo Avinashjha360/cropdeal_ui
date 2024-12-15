@@ -1,0 +1,44 @@
+.container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.product-listing {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.product-listing a {
+    list-style: none;
+    text-decoration: none;
+}
+
+.product-listing p {
+    color: rgb(34, 2, 2);
+}
+
+.product-name {
+    margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.product-info {
+    margin: 1px;
+}
+
+.add-to-cart,
+.buy-now {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #005dc0;
+    color: #fff;
+    border: none;
+    border-radius: 1px;
+    cursor: pointer;
+}
+
+.add-to-cart:hover,
+.buy-now:hover {
+    background-color: #0056b3;
+}

@@ -48,8 +48,6 @@ export class CartComponent implements OnInit{
 
       this.cart?.products.forEach((value) => {
         if (value.productId === productId) {
-          // Remove the product from the cart
-          // Assuming `this.cart` is an array, we can use `splice` to remove the item
           const index = this.cart!.products.indexOf(value);
           if (index !== -1) {
             this.cart!.totalAmount = this.cart!.totalAmount - (value.price * value.quantity);
@@ -59,6 +57,4 @@ export class CartComponent implements OnInit{
       });
     })
   }
-
-
 }

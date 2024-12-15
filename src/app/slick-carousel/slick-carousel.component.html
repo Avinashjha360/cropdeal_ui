@@ -24,9 +24,29 @@
     <div class="container">
         <div class="row mt-5">
             <!-- Product Cards -->
+            <div class="col-md-3" (click)="getFruits()">
+                <mat-card>
+                    <img mat-card-image src="https://www.diagnosisdiet.com/assets/images/c/fruit-og-d176ef00.jpg"
+                        alt="Image of " class="mx-4 mt-1" height="220">
+                    <mat-card-content>
+                        <p class="product-info my-0">Category</p>
+                        <p class="product-name mt-1" #productName>Fuits</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-md-3" (click)="getVegetables()">
+                <mat-card>
+                    <img mat-card-image src="https://surfcoastwholefoods.com.au/wp-content/uploads/2012/12/325-Vegetable-Box-40.jpg"
+                        alt="Image of " class="mx-4 mt-1" height="220">
+                    <mat-card-content>
+                        <p class="product-info my-0">Category</p>
+                        <p class="product-name mt-1" #productName>Vegetables</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
             <div class="col-md-3">
                 <mat-card>
-                    <img mat-card-image src="https://ogami-react.vercel.app/assets/images/sections/category/one/1.png"
+                    <img mat-card-image src="https://d2wdttfod93r0n.cloudfront.net/BrandCategoryMapping/juices_0144202454234AM.png"
                         alt="Image of " class="mx-4 mt-1" height="220">
                     <mat-card-content>
                         <p class="product-info my-0">Category</p>
@@ -36,27 +56,7 @@
             </div>
             <div class="col-md-3">
                 <mat-card>
-                    <img mat-card-image src="https://ogami-react.vercel.app/assets/images/sections/category/one/2.png"
-                        alt="Image of " class="mx-4 mt-1" height="220">
-                    <mat-card-content>
-                        <p class="product-info my-0">Category</p>
-                        <p class="product-name mt-1" #productName>12 Items</p>
-                    </mat-card-content>
-                </mat-card>
-            </div>
-            <div class="col-md-3">
-                <mat-card>
-                    <img mat-card-image src="https://ogami-react.vercel.app/assets/images/sections/category/one/3.png"
-                        alt="Image of " class="mx-4 mt-1" height="220">
-                    <mat-card-content>
-                        <p class="product-info my-0">Category</p>
-                        <p class="product-name mt-1" #productName>12 Items</p>
-                    </mat-card-content>
-                </mat-card>
-            </div>
-            <div class="col-md-3">
-                <mat-card>
-                    <img mat-card-image src="https://ogami-react.vercel.app/assets/images/sections/category/one/4.png"
+                    <img mat-card-image src="https://target.scene7.com/is/image/Target/GUEST_2b7f75ea-fbb8-4767-8b1f-6bb809bfe214"
                         alt="Image of " class="mx-4 mt-1" height="220">
                     <mat-card-content>
                         <p class="product-info my-0">Category</p>
@@ -139,3 +139,70 @@
         </div>
     </div>
 </section>
+
+  
+<!-- About Section -->
+<div class="w3-container" style="padding:128px 16px" id="about">
+    <h3 class="w3-center">ABOUT THE COMPANY</h3>
+    <p class="w3-center w3-large">Key features of our company</p>
+    <div class="w3-row-padding w3-center" style="margin-top:64px">
+      <div class="w3-quarter">
+        <i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>
+        <p class="w3-large">Responsive</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+      </div>
+      <div class="w3-quarter">
+        <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
+        <p class="w3-large">Passion</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+      </div>
+      <div class="w3-quarter">
+        <i class="fa fa-diamond w3-margin-bottom w3-jumbo"></i>
+        <p class="w3-large">Design</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+      </div>
+      <div class="w3-quarter">
+        <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
+        <p class="w3-large">Support</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+      </div>
+    </div>
+  </div>
+  <!-- Promo Section "Statistics" -->
+  <div class="w3-container w3-row w3-center w3-dark-grey w3-padding-64">
+    <div class="w3-quarter">
+      <span class="w3-xxlarge">14+</span>
+      <br>Partners
+    </div>
+    <div class="w3-quarter">
+      <span class="w3-xxlarge">255+</span>
+      <br>Products
+    </div>
+    <div class="w3-quarter">
+      <span class="w3-xxlarge">189+</span>
+      <br>Happy Clients
+    </div>
+    <div class="w3-quarter">
+      <span class="w3-xxlarge">550+</span>
+      <br>Users
+    </div>
+  </div>
+
+  
+<!-- Promo Section - "We know design" -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px">
+    <div class="w3-row-padding">
+      <div class="w3-col m6">
+        <h3>We know design.</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore.</p>
+        <p><a href="#work" class="w3-button w3-black"><i class="fa fa-th"> </i> View Our Works</a></p>
+      </div>
+      <div class="w3-col m6">
+        <img class="w3-image w3-round-large" src="https://img.freepik.com/free-photo/carrot-isolated_74190-275.jpg" alt="Buildings" width="700" height="394">
+      </div>
+    </div>
+  </div>
+
+
+
+  

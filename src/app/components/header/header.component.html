@@ -1,116 +1,56 @@
-<div class="top-nav" *ngIf="!isLoggedIn()">
-    <div class="container-fluid m-0">
-        <button mat-mini-fab color="primary mx-2" aria-label="Example icon button with a menu icon" (click)="show()"
-            class="mobile-menu-button">
-            <mat-icon>menu</mat-icon>
-        </button>
+<div class="w3-top">
+    <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large"
+        style="display:none" id="mySidebar">
+        <a href="javascript:void(0)" (click)="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close
+            ×</a>
+        <a href="#about" (click)="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+        <a href="#team" (click)="w3_close()" class="w3-bar-item w3-button">TEAM</a>
+        <a href="#work" (click)="w3_close()" class="w3-bar-item w3-button">WORK</a>
+        <a href="#pricing" (click)="w3_close()" class="w3-bar-item w3-button">PRICING</a>
+        <a href="#contact" (click)="w3_close()" class="w3-bar-item w3-button">Login</a>
+    </nav>
 
-        <div class="row">
-            <div class="col">
-                <ul class="list-unstyled mb-0">
-                    <li class="brand-name" [routerLink]="['/']">CROPDEAL</li>
-                    <li><i class="fas fa-envelope"></i> infoexample.com</li>
-                    <!-- <li><i class="fas fa-phone-alt"></i> +91 876-456-7890</li> -->
-                </ul>
-            </div>
-            <div class="col">
-                <div class="search-container">
-                    <form [formGroup]="searchForm" (submit)="search()">
-                        <input type="text" class="search-input" placeholder="Search..." [formControl]="searchText">
-                        <button type="submit" class="search-button">
-                            <mat-icon aria-hidden="false" aria-label="Example search icon" fontIcon="search"></mat-icon>
-                        </button>
-                    </form>
+    <div class="w3-bar w3-white w3-card py-2" id="myNavbar">
+        <a routerLink="/" class="w3-bar-item w3-button w3-wide gradient-text">CROPDEAL</a>
+        <div class="search-box mt-1">
+            <form [formGroup]="searchForm" (submit)="search()">
+                <input class="form-control mx-1" type="search" placeholder="Search..." [formControl]="searchText">
+                <button class="btn btn-primary btn-block" type="submit">Search</button>
+            </form>
+        </div>
+
+        <div class="w3-right w3-hide-small">
+            <a href="#about" class="w3-bar-item w3-button" *ngIf="!isLoggedIn()">ABOUT</a>
+            <a href="#work" class="w3-bar-item w3-button" *ngIf="!isLoggedIn()"><i class="fa fa-th"></i> WORK</a>
+            <a href="#pricing" class="w3-bar-item w3-button" *ngIf="!isLoggedIn()"><i class="fa fa-usd"></i> PRICING</a>
+            <a routerLink="/login" class="w3-bar-item w3-button" *ngIf="!isLoggedIn()"><i class="fa fa-user"></i>
+                LOGIN</a>
+            <mat-toolbar class="w3-bar-item w3-button" *ngIf="isLoggedIn()">
+                <mat-icon class="account-icon">notifications</mat-icon>
+            </mat-toolbar>
+            <mat-toolbar class="w3-bar-item w3-button" *ngIf="isLoggedIn() && getRole()==='DEALER'">
+                <mat-icon matBadgeColor="accent" class="account-icon" [routerLink]="['/cart']"
+                    [matBadge]="sharedService.getCounter()>0?sharedService.getCounter():''">shopping_cart</mat-icon>
+            </mat-toolbar>
+            <mat-toolbar class="w3-bar-item w3-button" *ngIf="isLoggedIn()">
+                <!-- <mat-icon  [matMenuTriggerFor]="userMenu"><i class="fa fa-user-circle"></i>ADMIN</mat-icon> -->
+                <div [matMenuTriggerFor]="userMenu" style="display: flex;">
+                    <mat-icon class="account-icon">account_circle</mat-icon> 
+                    <p style="margin-top: -4px; font-size: smaller;" class="mx-1">{{getUserName()}}</p> 
                 </div>
-            </div>
-            <div class="col text-right right">
-                <ul class="list-inline mb-0">
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f" style="color: white;"></i></a>
-                    </li>
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-twitter" style="color: white;"></i></a>
-                    </li>
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-instagram" style="color: white;"></i></a>
-                    </li>
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in"
-                                style="color: white;"></i></a></li>
-                    <li class="list-inline-item"><a [routerLink]="['/login']" style="color: white;"><i
-                                class="fa fa-user mx-2" style="color: white;"></i>Login</a></li>
-                </ul>
-            </div>
-
+                <mat-menu #userMenu="matMenu">
+                    <a [routerLink]="[this.getRole().toLocaleLowerCase(),'dashboard']"><button mat-menu-item><mat-icon
+                                class="bar-icon m-1">dashboard</mat-icon>Dashboard</button></a>
+                    <button mat-menu-item><mat-icon class="bar-icon m-1">settings</mat-icon>Edit Profile</button>
+                    <button mat-menu-item (click)="logout()"><mat-icon
+                            class="cart-icon m-1">logout</mat-icon>Logout</button>
+                </mat-menu>
+            </mat-toolbar>
         </div>
-    </div>
-</div>
 
-
-<div class="mobile" *ngIf="!isLoggedIn() && toggle">
-    <div class="container">
-        <div class="row">
-            <div class="example-button-container close px-2 py-1" (click)="close()">
-                <mat-icon>close</mat-icon>
-            </div>
-            <div class="menu">
-                <h1 [routerLink]="['/']" class="menu-item">CROPDEAL</h1>
-                <a [routerLink]="['/']" class="menu-item"><i class="fa fa-home mx-2"></i>HOME</a>
-                <a [routerLink]="['/login']" class="menu-item"><i class="fa fa-user mx-2"></i>Login</a>
-                <a href="#" class="menu-item"><i class="fas fa-envelope mx-2"></i> infoexample.com</a>
-                <a href="#" class="menu-item disabled"><i class="fas fa-phone-alt mx-2"></i> +91 876-456-7890</a>
-                <li class="list-inline-item px-3 py-3">
-                    <i class="fab fa-facebook"></i>
-                    <i class="fab fa-instagram mx-3"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-linkedin-in mx-3"></i>
-                </li>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- <header class="header"  *ngIf="!isLoggedIn()">
-    <a >
-       
-    </a>
-    <div class="search-container">
-        <input type="text" class="search-input" placeholder="Search...">
-        <button type="submit" class="search-button">
-            <mat-icon aria-hidden="false" aria-label="Example search icon" fontIcon="search"></mat-icon>
-        </button>
-    </div>
-
-    <div class="icons">
-        <a [routerLink]="['/cart']">
-            <mat-icon aria-hidden="false" [matBadge]="''" aria-label="Example cart" class="cart-icon">shopping_cart</mat-icon>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+            (click)="w3_open()"><i class="fa fa-bars"></i>
         </a>
     </div>
-</header> -->
+</div>s
 
-<nav class="navbar navbar-expand-lg" *ngIf="isLoggedIn()">
-    <div class="example-button-container">
-        <button mat-mini-fab color="primary mx-2" aria-label="Example icon button with a menu icon">
-            <mat-icon>menu</mat-icon>
-        </button>
-    </div>
-    <a class="navbar-brand" [routerLink]="['/']"><span class="MuiButton-label">CROPDEAL</span></a>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <mat-toolbar class="toolbar">
-            <mat-icon color="primary" matBadgeColor="accent" *ngIf="getRole()==='DEALER'" class="account-icon"
-                [routerLink]="['/cart']"
-                [matBadge]="sharedService.getCounter()>0?sharedService.getCounter():''">shopping_cart</mat-icon>
-        </mat-toolbar>
-        <mat-toolbar class="toolbar">
-            <mat-icon class="account-icon" color="primary">notifications</mat-icon>
-        </mat-toolbar>
-        <mat-toolbar class="toolbar-3">
-            <mat-menu #userMenu="matMenu">
-                <a [routerLink]="[this.getRole().toLocaleLowerCase(),'dashboard']"><button mat-menu-item><mat-icon
-                            class="bar-icon m-1">dashboard</mat-icon>Dashboard</button></a>
-                <button mat-menu-item><mat-icon class="bar-icon m-1">settings</mat-icon>Edit Profile</button>
-                <button mat-menu-item (click)="logout()"><mat-icon
-                        class="cart-icon m-1">logout</mat-icon>Logout</button>
-            </mat-menu>
-            <span>{{getRole()}}</span> <mat-icon class="account-icon" [matMenuTriggerFor]="userMenu"
-                color="primary">account_circle</mat-icon>
-        </mat-toolbar>
-    </div>
-</nav>

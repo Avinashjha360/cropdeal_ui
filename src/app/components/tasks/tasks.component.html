@@ -1,0 +1,23 @@
+<div class="task-table">
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Status</th>
+        <th>Created At</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td>{{ task.createdBy }}</td>
+        <td><span class="status-pending">Pending</span></td>
+        <td>{{ task.creationDate | date: 'short' }}</td>
+        <td class="task-actions">
+          <button class="btn btn-approve" (click)="updateTask(task.id, 'Approved')">Approve</button>
+          <button class="btn btn-reject" (click)="updateTask(task.id, 'Rejected')">Reject</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

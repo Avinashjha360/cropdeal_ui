@@ -1,31 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { Router, ActivatedRoute, RouterModule, NavigationEnd } from '@angular/router';
+import { ProductService } from '../../Service/product.service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [],
+  imports: [
+    RouterModule,
+    MatCardModule,
+    MatButtonModule],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
-export class SearchComponent implements OnInit {
-
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) { 
-    const navigation = this.router.getCurrentNavigation();
-    console.log("navigation",navigation);
+export class SearchComponent{
+  products: any = [];
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private productService: ProductService) {
+    const name = this.activatedRoute.snapshot.params['name'];    
+    this.productService.getProductsByName(name).subscribe((data: any) => {
+      this.products = data.data;      
+    })
   }
 
-
-  ngOnInit(): void {
-    // Accessing the state data
-    const navigation = this.router.getCurrentNavigation();
-    console.log("navigation",navigation);
-
-    if (navigation?.extras.state) {
-      const state = navigation.extras.state as { searchText: string };
-      console.log("State:", state.searchText);
-    }
+  ngOnInit(){
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {      
+      const name = this.activatedRoute.snapshot.params['name'];            
+      this.productService.getProductsByName(name).subscribe((data: any) => {
+        this.products = data.data;        
+      })
+    });
   }
-
 }

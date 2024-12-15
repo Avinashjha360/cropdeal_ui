@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' // This makes the service available application-wide
 })
 export class UserService {
 
@@ -23,6 +23,10 @@ export class UserService {
 
   deleteUser(userId:string){
     return this.http.delete(this.PATH_OF_API+"user/delete/"+userId);
+  }
+
+  getUserTasks(userEmail:string){
+    return this.http.get(this.PATH_OF_API+"task/"+userEmail);
   }
 }
 

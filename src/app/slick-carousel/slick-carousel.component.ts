@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { Product } from '../models/products';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -19,6 +19,14 @@ export class SlickCarouselComponent {
   @Input() products: Product[] = [];
   fruit: Product[] = [];
   vegetable: Product[] = [];
+  private route = inject(Router);
+
+ getFruits(){
+  this.route.navigate(['/search', 'Fruit']);
+ }
+ getVegetables(){
+  this.route.navigate(['/search', 'Vegetable']);
+ }
 
   slideConfig = {
     "slidesToShow": 6,

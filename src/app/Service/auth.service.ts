@@ -5,7 +5,7 @@ import { CartObject } from '../models/cart';
 import { SharedService } from './shared.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' // This makes the service available application-wide
 })
 
 export class AuthService {
@@ -39,6 +39,24 @@ export class AuthService {
     }    
     const payload = JSON.parse(atob(token.split('.')[1]));    
     return payload.ROLE;
+  }
+
+  public getUserName(): any {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+      return null;
+    }    
+    const payload = JSON.parse(atob(token.split('.')[1]));    
+    return payload.USERNAME;
+  }
+
+  public getUserEmail(): any {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+      return null;
+    }    
+    const payload = JSON.parse(atob(token.split('.')[1]));    
+    return payload.sub;
   }
 
   public setToken(jwtToken: string) {

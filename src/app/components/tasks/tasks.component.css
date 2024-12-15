@@ -1,0 +1,70 @@
+/* Styles for the task table */
+.task-table {
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #4caf50;
+  color: white;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  font-weight: bold;
+}
+
+td {
+  font-size: 14px;
+}
+
+.status-pending {
+  color: #ff9800;
+  font-weight: bold;
+}
+
+.task-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Button styles */
+.btn {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-approve {
+  background-color: #4caf50;
+  color: white;
+}
+
+.btn-approve:hover {
+  background-color: #45a049;
+}
+
+.btn-reject {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-reject:hover {
+  background-color: #e53935;
+}

@@ -27,7 +27,7 @@
 .login-box h2 {
     margin-bottom: 8px;
 }
-.login-box form p{
+.login-box form p.red-text{
     margin:3px 5px;
     color: red;
     text-align: left;
@@ -43,7 +43,7 @@
 .login-box button {
     width: 100%;
     padding: 10px;
-    margin: 20px 0px;
+    /* margin: 20px 0px; */
     background: linear-gradient(195deg, rgb(73, 163, 241), rgb(26, 115, 232));
     border: none;
     color: #fff;
@@ -69,6 +69,7 @@
     letter-spacing: -0.34px;
     font-weight: 500;
 }
+
 
 
   

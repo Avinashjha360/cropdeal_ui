@@ -42,7 +42,7 @@ export const routes: Routes = [
         title: 'Register'
     },
     {
-        path: 'search',
+        path: 'search/:name',
         component: SearchComponent,
         title: 'Search'
     },
@@ -159,8 +159,4 @@ export const routes: Routes = [
         component: LoginComponent,
         title: 'Login Page'
     },
-    
-    
-
-
 ];

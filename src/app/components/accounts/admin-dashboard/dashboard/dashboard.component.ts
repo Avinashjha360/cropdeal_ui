@@ -3,11 +3,12 @@ import { MatIcon } from '@angular/material/icon';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../../Service/auth.service';
+import { TasksComponent } from "../../../tasks/tasks.component";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [MatIcon, CommonModule],
+  imports: [MatIcon, CommonModule, TasksComponent],
   animations: [
     trigger('increaseCount', [
       transition(':increment', [
@@ -20,10 +21,14 @@ import { AuthService } from '../../../../Service/auth.service';
   styleUrl: './dashboard.component.css'
 })
 export class AdminDashboardComponent implements OnInit{
-  currentCount: number = 0;
+  selectedTab: number = 1; // Default to the first tab (Pending tasks)
 
+  currentCount: number = 0;
   constructor(public authService:AuthService) { }
 
+  selectTab(tabIndex: number): void {
+    this.selectedTab = tabIndex;
+  }
   ngOnInit(): void {
     this.increaseCount(1000);
   }

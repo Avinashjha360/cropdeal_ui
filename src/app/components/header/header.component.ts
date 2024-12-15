@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { LogoutDialogComponent } from '../logoutDialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ProductService } from '../../Service/product.service';
 
 declare var webkitSpeechRecognition: new () => any;
 
@@ -38,6 +39,22 @@ declare var webkitSpeechRecognition: new () => any;
 
 export class HeaderComponent implements OnInit {
 
+  w3_open() {
+    const mySidebar: any = document.getElementById("mySidebar");
+
+    if (mySidebar.style.display === 'block') {
+      mySidebar.style.display = 'none';
+    } else {
+      mySidebar.style.display = 'block';
+    }
+  }
+
+  w3_close() {
+    const mySidebar: any = document.getElementById("mySidebar");
+
+    mySidebar.style.display = "none";
+  }
+
   toggle: boolean = false;
   searchText = new FormControl('', [
     Validators.required,
@@ -54,6 +71,7 @@ export class HeaderComponent implements OnInit {
     private dialog: MatDialog,
     private route: Router,
     private ngZone: NgZone,
+    private productService: ProductService
   ) { }
   ngOnInit(): void {
     const userId = this.authService.getUserId();
@@ -68,8 +86,8 @@ export class HeaderComponent implements OnInit {
   }
 
   search() {
-    if(this.searchForm.valid){
-      this.route.navigateByUrl('/search', { state: { searchText:"this.searchForm.value" } });
+    if (this.searchForm.valid && this.searchText.value != null) {
+        this.route.navigate(['/search', this.searchText.value]);
     }
   }
 
@@ -91,6 +109,10 @@ export class HeaderComponent implements OnInit {
 
   public getRole(): string {
     return this.authService.getRole();
+  }
+
+  public getUserName(): string {
+    return this.authService.getUserName();
   }
 
   results: any;

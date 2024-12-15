@@ -10,55 +10,11 @@ import { AuthService } from '../../Service/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CartService } from '../../Service/cart.service';
 
-
 @Component({
   selector: 'app-details',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RatingsComponent],
-  template: `
-   <div class="container">
-  <div class="row mt-3">
-    <div class="col-md-4">
-      <div class="product-container">
-        <div class="product-image">
-          <img [src]="products?.image" alt="Product Image" class="img-fluid">
-        </div>
-
-      </div>
-    </div>
-    <div class="col-md-6">
-    <div class="product-details">
-          <h1 class="product-name">{{products?.name}}</h1>
-          <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum commodo feugiat justo, eget convallis nisi ultricies at. Nulla facilisi.</p>
-          <p class="product-price">Price: {{"&#8377;"+products?.price}}</p>
-          <p class="product-availability text-success">In Stock</p>
-          <p class="product-quantity">Quantity Available: {{products?.quantity}}</p>
-          <p class="product-category">Category: {{products?.category}}</p>
-          <p class="seller-info">Sold by: Vindo Sharma | Location: {{products?.location}} | Contact:vinod.com</p>
-          <div class="action-buttons">
-            <button class="btn btn-primary buy-now" (click)="addToCart('buy-now')">Buy Now</button>
-            <button class="btn btn-success add-to-cart" (click)="addToCart('add-to-cart')">Add to Cart</button>
-          </div>
-        </div>
-    </div>
-  </div>
-  <div class="row">
-  <div class="col-md-9">
-      <div class="additional-info">
-        <h2>About the Product</h2>
-        <p>{{products?.description}}</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum commodo feugiat justo, eget convallis nisi ultricies at. Nulla facilisi.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
- <section>
-    <app-ratings [ratings]="rating" [product]="products"></app-ratings>
-</section>
-
-
-`,
+  templateUrl: './details.component.html',
   styleUrl: './details.component.css'
 })
 export class DetailsComponent implements OnInit {
@@ -83,12 +39,12 @@ export class DetailsComponent implements OnInit {
       this.rating = product.ratings || [];
     });
 
-    this._router.events.subscribe((event) => { 
-      if (!(event instanceof NavigationEnd)) { 
-          return; 
-      } 
-      window.scrollTo(0, 0) 
-  }); 
+    this._router.events.subscribe((event) => {
+      if (!(event instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0)
+    });
   }
 
 

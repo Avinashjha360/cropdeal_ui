@@ -7,6 +7,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SlickCarouselComponent } from './slick-carousel/slick-carousel.component';
 import { AuthService } from './Service/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ import { AuthService } from './Service/auth.service';
     FooterComponent,
     AlertComponent,
     HeaderComponent,
-    SlickCarouselComponent
+    SlickCarouselComponent,
+    CommonModule
     ],
   standalone: true,
   templateUrl: `./app.component.html`,
